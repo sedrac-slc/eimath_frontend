@@ -1,0 +1,15 @@
+.d-parenteses{
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  width: max-content;
+}
+
+.ml-one{
+  margin-top: 1.8rem;
+}

@@ -1,0 +1,34 @@
+:root{
+  --photo-dimension: 100px;
+}
+
+.photo-image{
+  height: var(--photo-dimension);
+  width: var(--photo-dimension);
+}
+
+.gap{
+  gap: 2rem
+}
+
+#mathContentCenter article p{
+  text-align: justify;
+  text-indent: 30px;
+}
+
+#mathContentCenter article ul li{
+  text-align: justify;
+}
+
+.topico-group{
+  position: relative;
+  padding-bottom: 0.5rem;
+  align-items: center;
+}
+
+.f-r{
+  position: absolute;
+  right: 2%;
+  top: 0%;
+}
+

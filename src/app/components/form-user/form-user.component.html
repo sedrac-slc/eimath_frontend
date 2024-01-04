@@ -1,0 +1,87 @@
+<form class="p-1" (submit)="onSubmitEmitter($event)">
+  <div class="row">
+    <div class="col-md-6">
+      <app-form-input icon="bx-rename" [id]="attribute.name" [falied]="!formValied.isValid(attribute.name)"
+        [placeholder]="language.message().register_digit_name" [label]="language.message().register_name"
+        (onChangeValue)="this.form.patchValue({ name: $event })" [disabled]="disabledInputs" [value]="person.name"/>
+    </div>
+    <div class="col-md-6">
+      <app-form-input icon="bx-user" [id]="attribute.username" [falied]="!formValied.isValid(attribute.username)"
+        [placeholder]="language.message().register_username" [label]="language.message().register_digit_username"
+        (onChangeValue)="this.form.patchValue({ username: $event })" [disabled]="disabledInputs" [value]="person.username"/>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-md-6">
+      <app-form-input icon="bx-at" type="email" [id]="attribute.email" [falied]="!formValied.isValid(attribute.email)"
+        [placeholder]="language.message().register_digit_email" [label]="language.message().register_email"
+        (onChangeValue)="this.form.patchValue({ email: $event })" [disabled]="disabledInputs" [value]="person.email"/>
+    </div>
+    <div class="col-md-6">
+      <app-form-input icon="bx-phone" [id]="attribute.phone" [falied]="!formValied.isValid(attribute.phone)"
+        [placeholder]="language.message().register_digit_phone" [label]="language.message().register_phone"
+        (onChangeValue)="this.form.patchValue({ phone: $event })" [disabled]="disabledInputs" [value]="person.phone"/>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-md-6">
+      <app-form-input icon="bxs-calendar-star" type="date" [id]="attribute.birthday"
+        [falied]="!formValied.isValid(attribute.birthday)" [placeholder]="language.message().register_digit_birthday"
+        [label]="language.message().register_birthday" (onChangeValue)="this.form.patchValue({ birthday: $event })"
+        [value]="format(person.birthDay)"
+        [disabled]="disabledInputs" />
+    </div>
+    <div class="col-md-6">
+      <app-form-select icon="bx-male-female" [id]="attribute.gender" [falied]="!formValied.isValid(attribute.gender)"
+        [placeholder]="language.message().register_digit_gender" [label]="language.message().register_gender"
+        [options]="genders" (onChangeValue)="this.form.patchValue({ gender: $event })" [disabled]="disabledInputs" [value]="person.gender"/>
+    </div>
+  </div>
+  <div class="row mt-2" *ngIf="visiblePassword">
+    <div class="col-md-6">
+      <app-form-input icon="bx-key" type="password" [id]="attribute.password"
+        [falied]="!formValied.isValid(attribute.password)" [placeholder]="language.message().register_digit_password"
+        [label]="language.message().register_password" (onChangeValue)="this.form.patchValue({ password: $event })"
+        [disabled]="disabledInputs"/>
+    </div>
+    <div class="col-md-6">
+      <app-form-input icon="bx-shield" type="password" [id]="attribute.password_confirm"
+        [falied]="!formValied.isValid(attribute.password_confirm)"
+        [placeholder]="language.message().register_digit_password_confirm"
+        [label]="language.message().register_password_confirm"
+        (onChangeValue)="this.form.patchValue({ password_confirm: $event })" [disabled]="disabledInputs" />
+    </div>
+  </div>
+
+  <div class="mt-2 p-2">
+    <div class="row w-max-content">
+      <div class="col p-1" *ngIf="!formIsAuth; else btnVar">
+        <button class="btn btn-outline-success d-flex gap-1" type="submit" [disabled]="!form.valid">
+          <i class="bx bx-log-in"></i>
+          <span>Guardar</span>
+        </button>
+      </div>
+      <ng-template #btnVar>
+        <div class="col p-1" *ngIf="!disabledInputs">
+          <button class="btn btn-outline-success d-flex gap-1" type="submit" [disabled]="!form.valid">
+            <i class="bx bx-log-in"></i>
+            <span>Guardar</span>
+          </button>
+        </div>
+      </ng-template>
+      <div class="col p-1" *ngIf="!disabledInputs && formIsAuth">
+        <button class="btn btn-outline-danger d-flex gap-1" type="button" (click)="disabledInputs = !disabledInputs">
+          <i class="bx bx-check"></i>
+          <span>Cancelar</span>
+        </button>
+      </div>
+      <div class="col p-1" *ngIf="disabledInputs && formIsAuth">
+        <button class="btn btn-outline-warning d-flex gap-1" type="button" (click)="disabledInputs = !disabledInputs">
+          <i class="bx bx-edit"></i>
+          <span>Editar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</form>

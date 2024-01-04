@@ -1,0 +1,43 @@
+<main class="bg-primary full-screen">
+  <nav class="navbar flex-grow-0">
+    <div class="container-fluid">
+      <div class="d-flex gap-3 justify-content-center align-items-center">
+        <div [routerLink]="link.public"
+          class="bg-white rounded-circle d-flex justify-content-center align-items-center cursor-pointer">
+          <i class='bx bx-left-arrow-alt bx-md'></i>
+        </div>
+        <div class="text-white">{{ constant.site_name }}</div>
+      </div>
+    </div>
+  </nav>
+  <header class="position-relative w-100  flex-grow-1 mt-3">
+    <section [class]="'m-auto h-100 '+cls">
+      <div class="bg-white p-3 rounded border border-primary">
+        <div class="mb-3">
+          <app-selector-language />
+        </div>
+        <h5 class="">
+          <span class="">{{ title }}</span>
+        </h5>
+        <hr class="pt-1 pb-1" />
+        <ng-content [select]="'#'+contentId.login_register_form_input"/>
+        <div *ngIf="action=='login'" class="d-flex flex-sm-column gap-1 links-redirect">
+          <a class="text-dark text-decoration-none" *ngIf="false">
+            <i class="fas fa-key"></i>
+            <span class="ml-1">{{ language.message().forget_password }}</span>
+          </a>
+          <a class="mt-2 text-dark text-decoration-none" (click)="navigator.from(link.public_register)">
+            <i class="fas fa-file-alt"></i>
+            <span class="ml-1">{{ language.message().not_exist_account_create }}</span>
+          </a>
+        </div>
+        <div *ngIf="action=='register'" class="d-flex flex-sm-column gap-1 links-redirect">
+          <a class="mt-2 text-dark text-decoration-none" (click)="navigator.from(link.public_login)">
+            <i class="fas fa-file-alt"></i>
+            <span class="ml-1">{{ language.message().exist_account_create }}</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </header>
+</main>

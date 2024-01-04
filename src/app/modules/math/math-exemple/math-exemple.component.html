@@ -1,0 +1,15 @@
+<div class="scroll-div">
+  <div class="border p-2 m-3 rounded" *ngFor="let item of exemplos">
+    <div *ngIf="item.message != ''">{{ item.message }}</div>
+    <div class="p-2 mb-2 mt-2 rounded d-flex gap-2 align-items-center">
+      <div class="d-flex gap-1">
+        <button class="btn btn-sm btn-primary" (click)="onCopyEmitter(item.text)"> <i class='bx bx-copy'></i> </button>
+        <button class="btn btn-sm btn-primary" (click)="onCopyForInputEmitter(item.text)"> <i class='bx bxs-edit-alt'></i> </button>
+      </div>
+      <div class="text-monospace">{{ item.text }}</div>
+    </div>
+    <div class="border-top py-2">
+      <div [outerHTML]="item.html"></div>
+    </div>
+  </div>
+</div>

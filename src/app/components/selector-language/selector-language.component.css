@@ -1,0 +1,8 @@
+:root{
+  --default-dimension: 25px;
+}
+
+.country-img{
+  width: var(--default-dimension);
+  height: var(--default-dimension);
+}

@@ -1,0 +1,10 @@
+<div class="input-group w-100">
+  <label class="input-group-text" for="inputGroupSelect01">
+    <img [src]="imageSelected()" alt="image country selected" class="country-img">
+  </label>
+  <select class="form-select" id="inputGroupSelect01" (change)="changeLanguage($event.target)">
+    <option *ngFor="let item of languages" [value]="item.code" [selected]="item.selected">
+      {{ item.name }}
+    </option>
+  </select>
+</div>

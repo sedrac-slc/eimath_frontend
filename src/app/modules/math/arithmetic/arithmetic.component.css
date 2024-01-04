@@ -1,0 +1,80 @@
+
+.d-flex.grip {
+  gap: 0.5rem;
+}
+
+.fraction {
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.fraction .separator {
+  border-bottom: 1px solid;
+  width: 100%;
+}
+
+.fraction .signal {
+  position: absolute;
+  left: -10px;
+  top: 10px;
+}
+
+.fraction .signal.minus {
+  top: 8px;
+  left: -8px;
+}
+
+.fraction-arithmetic {
+  display: flex;
+  gap: 1rem;
+}
+
+.fraction-arithmetic-group-item {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  width: max-content;
+}
+
+.fraction-arithmetic-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+}
+
+.fraction-arithmetic-group-signal {
+  font-weight: bolder;
+  font-size: x-large;
+}
+
+.fraction.numflex {
+  display: flex;
+  flex-direction: column;
+}
+
+.fraction.numflex .numerator{
+  min-width: max-content;
+}
+
+.config-opt{
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+  position: relative;
+}
+
+.config-exemple{
+  position: absolute;
+  right: 0.2rem;
+}

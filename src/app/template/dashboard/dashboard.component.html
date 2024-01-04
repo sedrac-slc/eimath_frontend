@@ -1,0 +1,87 @@
+<div class="wrapper d-flex align-items-stretch">
+  <nav id="sidebar" class="bg-primary">
+    <div class="custom-menu">
+      <button type="button" id="sidebarCollapse" class="btn bg-primary border text-white"
+        (click)="toogleSidebarCollapse()">
+        <i class="bx bx-menu"></i>
+        <span class="sr-only">Toggle Menu</span>
+      </button>
+    </div>
+    <div class="p-4">
+      <div class="w-max-content m-auto">
+        <app-selector-language />
+      </div>
+      <div class="logo h3 text-white mb-4 mt-4 text-center">{{ constante.site_name }}</div>
+      <ul class="list-unstyled components mb-5">
+        <li class="active">
+          <a (click)="navigator.fromEvent(link.public,$event)">
+            <i class="bx bx-home mr-3"></i>
+            <span>{{ language.message().dashboard_home_page }}</span>
+          </a>
+        </li>
+        <li>
+          <a (click)="toogleDropDown('pageSubmenu')" data-toggle="collapse" aria-expanded="false"
+            class="dropdown-toggle">
+            <i class='bx bx-food-menu mr-3'></i>
+            <span>{{ language.message().dashboard_topic }}</span>
+          </a>
+          <ul class="collapse list-unstyled" id="pageSubmenu">
+            <li>
+              <a (click)="navigator.mathFromEvent(link.math_arithmetic, $event)">
+                <i class='bx bx-check mr-3'></i>
+                <span>{{ language.message().dashboard_arithmetic }}</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="navigator.mathFromEvent(link.math_equation, $event)">
+                <i class='bx bx-check mr-3'></i>
+                <span>{{ language.message().dashboard_equation }}</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="navigator.mathFromEvent(link.math_radical, $event)">
+                <i class='bx bx-check mr-3'></i>
+                <span>{{ language.message().dashboard_radical }}</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a (click)="toogleDropDown('studyGroupMenu')" data-toggle="collapse" aria-expanded="false"
+            class="dropdown-toggle" *ngIf="guardaService.confirmedPerson()">
+            <i class='bx bx-book mr-3'></i>
+            <span>{{ language.message().dashboard_study_group }}</span>
+          </a>
+          <ul class="collapse list-unstyled" id="studyGroupMenu">
+            <li>
+              <a (click)="navigator.studyGroupFromEvent(link.study_group_maneger,$event)">
+                <i class='bx bx-check mr-3'></i>
+                <span>{{ language.message().dashboard_administrator }}</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="navigator.studyGroupFromEvent(link.study_group_participation,$event)">
+                <i class='bx bx-check mr-3'></i>
+                <span>{{ language.message().dashboard_participant }}</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <button type="button" id="logautBtn" class="bg-danger border rounded-pill" (click)="guardaService.logaut(); navigator.loginRedirect();">
+    <i class='bx bx-log-out bx-md text-white'></i>
+  </button>
+
+  <div id="content" class="p-4 p-md-5 pt-5">
+    <div class="container">
+      <ng-content [select]="'#'+contentId.dashboard_content" />
+    </div>
+  </div>
+
+
+
+</div>

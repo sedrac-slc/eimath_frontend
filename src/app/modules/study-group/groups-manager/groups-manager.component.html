@@ -1,0 +1,55 @@
+<app-dashboard>
+  <div [id]="contentId.dashboard_content">
+
+    <button class="btn btn-outline-success mt-3 mb-1" type="button" data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop" (click)="changeGroupCreate()">
+      <i class="bx bx-plus"></i>
+      <span>{{ language.message().group_manager_add }}</span>
+    </button>
+
+    <div class="position-relative">
+      <app-table-study-group [studyGroupPage]="studyGroupPage" [person]="person"
+          (onClickedEditGroup)="changeGroupEdit($event)"
+          (onClickedDeleteGroup)="changeGroupDelete($event)"
+          (onClickedConvitGroup)="changeGroupConvit($event)"
+          (onClickedPage)="sweetAlert.validateFalied()"
+      />
+    </div>
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <form [formGroup]="form" (ngSubmit)="submit($event)" class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              <span *ngIf="action == action_create">{{ language.message().group_manager_add_study_group }}</span>
+              <span *ngIf="action == action_update">{{ language.message().group_manager_update_study_group }}</span>
+            </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <app-form-input icon="bx-user" [id]="attribute.name" [falied]="!formValied.isValid(attribute.name)"
+              [placeholder]="language.message().register_name" [label]="language.message().register_digit_name"
+              (onChangeValue)="this.form.patchValue({ name: $event })" [value]="form.value.name"
+              *ngIf="action == action_update || action == action_create"/>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+              <i class='bx bx-trash'></i>
+              <span>{{ language.message().group_manager_close }}</span>
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="bx bx-save"></i>
+              <span *ngIf="action == action_create">{{ language.message().group_manager_create }}</span>
+              <span *ngIf="action == action_update">{{ language.message().group_manager_save }}</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</app-dashboard>

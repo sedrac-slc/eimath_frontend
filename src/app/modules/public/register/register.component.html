@@ -1,0 +1,5 @@
+<app-login-register [title]="language.message().register_title"  [btnText]="language.message().btn_register" action="register">
+  <section [id]="contentId.login_register_form_input">
+    <app-form-user (onSubmit)="register($event)"/>
+  </section>
+</app-login-register>

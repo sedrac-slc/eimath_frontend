@@ -1,0 +1,65 @@
+@import "../arithmetic/arithmetic.component.css";
+
+.radical-group{
+  display: flex;
+  position: relative;
+}
+
+.radical-group .expoent{
+  position: absolute;
+  top: -9;
+  left: -4;
+}
+
+.radical-group .base{
+  border-top: 1px solid;
+  padding-right: 3px;
+}
+
+.fraction-group-radical{
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.fraction-group-radical.signal-simple .signal{
+  margin-top: -10px;
+}
+
+.radical, .rad, .rad-group, .rad-dflex, .rad-arith-group{
+  display: flex;
+}
+
+.radical, .rad-group{
+  gap: 0.1rem;
+}
+
+.rad-dflex{
+  gap: 0.2rem;
+}
+
+.rad-base{
+  border-top: 1px solid black;
+  margin-left: -2px;
+  padding-left: 1px;
+}
+
+.rad div{
+  margin-left: -5px;
+}
+
+.rad-arith-group{
+  gap: 0.2rem;
+}
+
+.rad-arith-group .arith-r {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  width: max-content;
+}

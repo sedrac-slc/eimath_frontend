@@ -1,0 +1,103 @@
+<app-dashboard>
+  <div [id]="contentId.dashboard_content">
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a (click)="navigator.fromEvent(link.math, $event)">{{ language.message().dashboard_topic }}</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          <a (click)="navigator.mathFromEvent(link.math_arithmetic, $event)" class="active"
+            *ngIf="constante.topic_arithmetic == topic">
+            {{ language.message().dashboard_arithmetic }}
+          </a>
+          <a (click)="navigator.mathFromEvent(link.math_equation, $event)" class="active"
+            *ngIf="constante.topic_equation == topic">
+            {{ language.message().dashboard_equation }}
+          </a>
+          <a (click)="navigator.mathFromEvent(link.math_radical, $event)" class="active"
+            *ngIf="constante.topic_radical == topic">
+            {{ language.message().dashboard_radical }}
+          </a>
+        </li>
+      </ol>
+    </nav>
+
+    <form [formGroup]="mathForm" class="input-group mb-3" (ngSubmit)="send($event)">
+
+      <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <i class='bx bx-cog'></i>
+      </button>
+
+      <button class="btn btn-outline-secondary" type="submit">
+        <i class='bx bx-calculator'></i>
+        <span>calcular</span>
+      </button>
+
+      <input type="text" class="form-control border" placeholder="" [value]="value" name="expression"
+        formControlName="expression" />
+
+      <app-math-modal [formGroup]="mathForm" />
+
+    </form>
+
+    <ul class="nav nav-tabs" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+          type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+          <i class='bx bx-exclude'></i>
+          <span>Resultado</span>
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+          type="button" role="tab" aria-controls="pills-profile" aria-selected="false" *ngIf="infoRole">
+          <i class='bx bxs-conversation'></i>
+          <span>Regras</span>
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
+          type="button" role="tab" aria-controls="pills-contact" aria-selected="false" *ngIf="infoExemple">
+          <i class='bx bx-list-check'></i>
+          <span>Exemplos</span>
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content bg-white" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+        tabindex="0">
+        <div class="panel-message" *ngIf=" mathResult.steps.length == 0 else resultYes; ">
+          <div class="fs-3 font-monospace">
+            <div class="">Resultado não encontrado</div>
+          </div>
+        </div>
+        <ng-template #resultYes>
+          <div class="p-2 m-2">
+            <ng-container *ngFor="let step of mathResult.steps">
+              <section>
+                <div>{{ step.message }}</div>
+                <div class="w-100" [innerHTML]="step.html"></div>
+              </section>
+            </ng-container>
+          </div>
+        </ng-template>
+      </div>
+      <div class="tab-pane fade p-3" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0"
+        *ngIf="infoRole">
+        <app-arithmetic-role *ngIf="constante.topic_arithmetic == topic" />
+        <app-equation-role *ngIf="constante.topic_equation == topic" />
+        <app-radical-role *ngIf="constante.topic_radical == topic" />
+      </div>
+      <div class="tab-pane fade p-3" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0"
+        *ngIf="infoExemple">
+        <app-arithmetic-exemple (onCopyForInput)="changeExpression($event)"
+          *ngIf="constante.topic_arithmetic == topic" />
+        <app-equation-exemple (onCopyForInput)="changeExpression($event)" *ngIf="constante.topic_equation == topic" />
+        <app-radical-exemple (onCopyForInput)="changeExpression($event)" *ngIf="constante.topic_radical == topic" />
+      </div>
+    </div>
+
+  </div>
+</app-dashboard>

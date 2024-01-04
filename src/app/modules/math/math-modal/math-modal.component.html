@@ -1,0 +1,48 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Métodos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Operação de soma entre duas frações</label>
+          <select [(ngModel)]="formGroup.value.methodFractionSum" class="form-select">
+            <option *ngFor="let item of fractionSumOrSub" [value]="item.value"> {{ item.desc }} </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Operação de subtração entre duas frações</label>
+          <select [(ngModel)]="formGroup.value.methodFractionSub" id="" class="form-select">
+            <option *ngFor="let item of fractionSumOrSub" [value]="item.value"> {{ item.desc }} </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Operação de soma entre infinitas frações</label>
+          <select [(ngModel)]="formGroup.value.methodArithmeticSum" id="" class="form-select">
+            <option *ngFor="let item of arithSumOrSub" [value]="item.value"> {{ item.desc }} </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Operação de subtração entre infinitas frações</label>
+          <select [(ngModel)]="formGroup.value.methodArithmeticSub" id="" class="form-select">
+            <option *ngFor="let item of arithSumOrSub" [value]="item.value"> {{ item.desc }} </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Operação de soma e subtração entre infinitas frações</label>
+          <select [(ngModel)]="formGroup.value.methodArithmeticSumOrSub" id="" class="form-select">
+            <option *ngFor="let item of arithSumOrSubFull" [value]="item.value"> {{ item.desc }} </option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          <i class='bx bx-trash'></i>
+          <span>Fechar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

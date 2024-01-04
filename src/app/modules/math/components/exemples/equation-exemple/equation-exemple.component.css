@@ -1,0 +1,52 @@
+@import url('../arithmetic-exemple/arithmetic-exemple.component.css');
+
+.equation-join, .equation-arithmetic , .equation, .equation-item{
+  display: flex;
+  position: relative;
+}
+
+.equation-arithmetic{
+  gap: 0.2rem;
+}
+
+.fraction-arithmetic-group .expoent,
+.equation-arithmetic .equation .expoent,
+.equation-item .expoent{
+  margin-top: -7px;
+  font-size: 10pt;
+}
+
+.equation-join .signal{
+  margin: 0rem 0.3rem 0rem 0.3rem;
+}
+
+.equation-join .equation-arithmetic{
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.2rem;
+}
+
+.equation-join .equation-arithmetic .fraction{
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+}
+
+.equation-join .equation-arithmetic .fraction .signal{
+  margin-top: 0px;
+}
+
+.equation-join .equation-arithmetic .fraction .signal.plus,
+.equation-join .equation-arithmetic .fraction .signal.minus,
+.fraction-arithmetic-group-item .fraction .signal.plus,
+.fraction-arithmetic-group-item .fraction .signal.minus{
+  margin: -9px 0px 0px 2px;
+}
+
+.fraction-arithmetic-group-item .fraction-arithmetic{
+  gap: 0.5rem;
+}

@@ -1,0 +1,33 @@
+@import url("../arithmetic/arithmetic.component.css");
+
+.fraction-arithmetic-group, .function-group, .fraction-group-function{
+  display: flex;
+}
+
+.fraction-group-function{
+  display: flex;
+  gap: 0.5rem;
+}
+
+.equation-delta-dflex{
+  display: flex;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+.equation-delta-dflex .fraction{
+  margin-top: -0.6rem;
+}
+
+.equation-delta-b{
+  border-bottom: 1px solid black;
+  padding-bottom: 0.1rem;
+}
+
+.equation-delta-dflex-fr{
+  margin-top: -0.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

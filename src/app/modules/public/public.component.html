@@ -1,0 +1,35 @@
+<main class="h-100 w-100 bg-primary d-flex flex-sm-column">
+  <app-navbar class="flex-grow-0"></app-navbar>
+  <header class="position-relative w-100 d-flex justify-content-center align-items-center flex-grow-1">
+    <section class="container">
+      <section class="row">
+        <div class="col-md-6">
+          <h3 class="f-s-1r f6 text-white mt-5 text-center mb-4">
+            <i class='bx bxs-hand bx-tada'></i>
+            <span>{{ i18n.message().welcome }}</span>
+          </h3>
+          <p class="mb-3 text-center text-white">{{ i18n.message().public_pag }}</p>
+          <div class="m-auto mb-1 px-1 row w-75 gap-2" *ngIf="!guardService.confirmedPerson(); else logado">
+            <button class="btn btn-success col-md-5 d-flex justify-content-center" [routerLink]="link.public_login">
+              <i class='bx bx-log-in'></i>
+              <span>{{ i18n.message().login }}</span>
+            </button>
+            <button href="#" class="btn btn-warning col-md-6 d-flex justify-content-center" [routerLink]="link.public_register">
+              <i class='bx bx-file'></i>
+              <span>{{ i18n.message().register }}</span>
+            </button>
+          </div>
+          <ng-template #logado>
+            <button class="btn btn-success col-md-5 d-flex m-auto justify-content-center" [routerLink]="link.math">
+              <i class='bx bx-home'></i>
+              <span>{{ i18n.message().panel }}</span>
+            </button>
+          </ng-template>
+        </div>
+        <div class="col-md-6">
+          <img [src]="image.teacher_board" alt="" class="w-100 h-100">
+        </div>
+      </section>
+    </section>
+  </header>
+</main>

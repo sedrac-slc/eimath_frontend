@@ -1,0 +1,12 @@
+<div class="">
+  <label [for]="id" class="form-label">
+    <i [class]="'bx '+icon" *ngIf="icon != ''"></i>
+    <span class="pl-2">{{label}}</span>
+  </label>
+  <select  [class]="'form-select '+(falied ? 'is-invalid' : 'invalid')"
+      [(ngModel)]="value" [id]="id"  [name]="id" (change)="onChangeValueEmitter(value)" [disabled]="disabled">
+    <option *ngFor="let item of options" [value]="item.value" [selected]="item.selected">
+      {{item.text}}
+    </option>
+  </select>
+</div>

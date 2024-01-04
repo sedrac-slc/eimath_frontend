@@ -1,0 +1,94 @@
+{
+  "users": [
+    {
+      "id": "aa362721-72ec-4c00-a3bd-d52f2c105fd4",
+      "name": "Sedrac Calupeteca",
+      "email": "slcsedrac@gmail.com",
+      "phone": "987878987",
+      "birthDay": 886204800000,
+      "gender": "MALE",
+      "username": "sedrac",
+      "password": "$2a$10$hNAdijLshHJdpRJrxmPeFOHF58IHzDQbO8OKgHm1GUyrVTSGOGOra",
+      "roles": null,
+      "enabled": true,
+      "accountNonLocked": true,
+      "authorities": null,
+      "credentialsNonExpired": true,
+      "accountNonExpired": true
+    }
+  ],
+  "groups": {
+    "content": [
+      {
+        "id": "ab362721-72ec-4c00-a3bd-d52f2c105fd1",
+        "name": "Grupo de aritmétmica 1"
+      },
+      {
+        "id": "bc362721-72ec-4c00-a3bd-d52f2c105fd2",
+        "name": "Grupo de aritmétmica 2"
+      },
+      {
+        "id": "cr362721-72ec-4c00-a3bd-d52f2c105fd3",
+        "name": "Grupo de aritmétmica 3"
+      },
+      {
+        "id": "dc362721-72ec-4c00-a3bd-d52f2c105fs2",
+        "name": "Grupo de aritmétmica 4"
+      },
+      {
+        "id": "ef362721-72ec-4c00-a3bd-d52f2c105fxs",
+        "name": "Grupo de aritmétmica 7"
+      },
+      {
+        "id": "gh362721-72ec-4c00-a3bd-d52f2c105f3s",
+        "name": "Grupo de aritmétmica 6"
+      },
+      {
+        "id": "ij362721-72ec-4c00-a3bd-d52f2c105fdlo",
+        "name": "Grupo de aritmétmica 7"
+      },
+      {
+        "id": "kl362721-72ec-4c00-a3bd-d52f2c105f9d",
+        "name": "Grupo de aritmétmica 8"
+      },
+      {
+        "id": "mn362721-72ec-4c00-a3bd-d52f2c105f9u",
+        "name": "Grupo de aritmétmica 9"
+      },
+      {
+        "id": "op362721-72ec-4c00-a3bd-d52f2c105fOI",
+        "name": "Grupo de aritmétmica 10"
+      }
+    ],
+    "first": true,
+    "last": false,
+    "number": 0,
+    "numberOfElements": 10,
+    "pageable": {},
+    "size": 0,
+    "sort": 0,
+    "totalElements": 10,
+    "totalPages": 1
+  },
+  "login": {
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWRyYWMiLCJleHAiOjE3MDM4NTk5OTIsImVtYWlsIjoic2xjc2VkcmFjQGdtYWlsLmNvbSJ9.rTFBYp4-4GqYIhBnLxh-3DqMqTa81bm2DAhMLWe5Oqg",
+    "person": {
+      "id": "aa362721-72ec-4c00-a3bd-d52f2c105fd4",
+      "name": "Sedrac Calupeteca",
+      "email": "slcsedrac@gmail.com",
+      "phone": "987878987",
+      "birthDay": "1998-01-31",
+      "gender": "MALE",
+      "username": "sedrac",
+      "password": "$2a$10$hNAdijLshHJdpRJrxmPeFOHF58IHzDQbO8OKgHm1GUyrVTSGOGOra",
+      "roles": null,
+      "enabled": true,
+      "accountNonLocked": true,
+      "authorities": null,
+      "credentialsNonExpired": true,
+      "accountNonExpired": true
+    },
+    "exist": true
+  },
+  "register": []
+}
