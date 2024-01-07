@@ -23,15 +23,16 @@ export class GroupsParticipationComponent {
 
     this.studyGroupPage = new StudyGroupPage();
     this.person = this.guardService.responseTokenUser().person;
-    this.studyGroupService.findAll(this.person.id).subscribe({
+    this.studyGroupService.findAllMember(this.person.id).subscribe({
       next: (item) => {  this.studyGroupPage = item; }
     })
 
   }
 
   refreshPage(page: number) {
-    this.studyGroupService.pageGroupsByUserId(this.person.id, page)
+    this.studyGroupService.pageGroupsMemberByUserId(this.person.id, page)
       .pipe(catchError( _ => of(this.studyGroupPage)))
       .subscribe((resp) => { this.studyGroupPage = resp; });
   }
+
 }

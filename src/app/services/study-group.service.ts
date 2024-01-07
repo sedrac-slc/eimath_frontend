@@ -31,8 +31,20 @@ export class StudyGroupService {
     });
   }
 
+  public findAllMember(uuid: string): Observable<StudyGroupPage>{
+    return this.httpClient.get<StudyGroupPage>(`${this.link.api_study_group_find_all}/members?people=${uuid}`,{
+       headers: this.httpHeaders
+     });
+   }
+
   public pageGroupsByUserId(uuid: string, page: number = 0): Observable<StudyGroupPage>{
     return this.httpClient.get<StudyGroupPage>(`${this.link.api_study_group_find_all}?people=${uuid}&page=${page}`,{
+      headers: this.httpHeaders
+    });
+  }
+
+  public pageGroupsMemberByUserId(uuid: string, page: number = 0): Observable<StudyGroupPage>{
+    return this.httpClient.get<StudyGroupPage>(`${this.link.api_study_group_find_all}/members?people=${uuid}&page=${page}`,{
       headers: this.httpHeaders
     });
   }
@@ -48,5 +60,12 @@ export class StudyGroupService {
        headers: this.httpHeaders
      });
   }
+
+  public delete(group: Group): Observable<void>{
+    return this.httpClient.delete<void>(`${this.link.api_study_group}/${group.id}`,{
+       headers: this.httpHeaders
+     });
+  }
+
 
 }
