@@ -16,9 +16,13 @@ export class LinkUtil {
   study_group_maneger: string ='maneger';
   study_group_participation: string = 'participation';
 
+  study_group_members: string = 'membres';
+  study_group_members_parm: string = this.study_group_members+'/:id/:group_type';
+
   math_arithmetic: string ='arithmetic';
   math_equation: string = 'equation';
   math_radical: string ='radical';
+
 
   api_register: string = environment.API_URL + '/authorization/register';
   api_login: string = environment.API_URL + '/authorization/login';
@@ -29,5 +33,8 @@ export class LinkUtil {
 
   api_study_group_find_all: string = environment.API_URL + '/groups/page';
   api_study_group: string = environment.API_URL + '/groups';
+
+  api_members: string = environment.API_URL + '/members';
+  api_members_by_group: string = this.api_members+'/by-group';
 
 }

@@ -3,6 +3,9 @@ import { Group } from 'src/app/model/grupo.model';
 import { StudyGroupPage } from 'src/app/model/grupoPage.model';
 import { UserPeople } from 'src/app/model/userPeople.model';
 import { LanguageService } from 'src/app/services/language.service';
+import { NavigatorService } from 'src/app/services/navigator.service';
+import { ConstantUtil } from 'src/app/utils/constant.util';
+import { LinkUtil } from 'src/app/utils/link.util';
 
 @Component({
   selector: 'app-table-study-group',
@@ -12,6 +15,7 @@ import { LanguageService } from 'src/app/services/language.service';
 export class TableStudyGroupComponent {
 
   @Input() person: UserPeople;
+  @Input() type: string = '';
   @Input() studyGroupPage: StudyGroupPage;
 
   @Input() btnAction: boolean = true;
@@ -23,7 +27,10 @@ export class TableStudyGroupComponent {
   @Output() onClickedConvitGroup: EventEmitter<Group>;
 
   constructor(
-    protected language: LanguageService
+    protected language: LanguageService,
+    protected link: LinkUtil,
+    protected navigator: NavigatorService,
+    protected constant: ConstantUtil
   ){
     this.person = new UserPeople();
     this.studyGroupPage = new StudyGroupPage();

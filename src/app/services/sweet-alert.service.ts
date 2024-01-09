@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
-import { Group } from '../model/grupo.model';
 import { StudyGroupService } from './study-group.service';
 
 @Injectable({
@@ -67,8 +66,8 @@ export class SweetALertService {
     this.swalBasic('error','Validação','Não possível a realização da operação!')
   }
 
-  confirmDeleteGroup(runnable: () => void){
-    this.swalConfirm(runnable,'Tens certeza?',"confirma acção de elimanação do grupo");
+  confirmDelete(runnable: () => void){
+    this.swalConfirm(runnable,'Tens certeza?',"confirma acção de elimanação");
   }
 
 }

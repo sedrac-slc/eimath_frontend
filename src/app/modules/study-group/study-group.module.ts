@@ -10,6 +10,8 @@ import { GroupsParticipationComponent } from './groups-participation/groups-part
 import { FormInputModule } from 'src/app/components/form-input/form-input.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableStudyGroupModule } from 'src/app/components/table-study-group/table-study-group.module';
+import { MembersComponent } from './members/members.component';
+import { ResultNotFoundModule } from 'src/app/components/result-not-found/result-not-found.module';
 
 
 @NgModule({
@@ -17,6 +19,7 @@ import { TableStudyGroupModule } from 'src/app/components/table-study-group/tabl
     StudyGroupComponent,
     GroupsManagerComponent,
     GroupsParticipationComponent,
+    MembersComponent,
   ],
   imports: [
     CommonModule,
@@ -27,7 +30,8 @@ import { TableStudyGroupModule } from 'src/app/components/table-study-group/tabl
     FormsModule,
     ReactiveFormsModule,
 
-    FormInputModule
+    FormInputModule,
+    ResultNotFoundModule
   ]
 })
 export class StudyGroupModule {

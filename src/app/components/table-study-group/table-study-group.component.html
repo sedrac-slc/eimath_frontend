@@ -1,52 +1,63 @@
-<div class="table-responsive mt-3">
-  <table class="table table-borderless table-hover text-center border rounded">
+<div class="table-responsive mt-3" *ngIf="studyGroupPage.content.length > 0 else empty;">
+  <table class="table table-borderless table-hover border rounded">
     <thead class="table-primary">
       <tr>
         <th>{{ language.message().register_name }}</th>
-        <th colspan="2" *ngIf="btnMembro">{{ language.message().table_study_menbers }}</th>
-        <th colspan="2" *ngIf="btnAction">{{ language.message().table_study_actions }}</th>
+        <th colspan="2" *ngIf="btnMembro && type == constant.group_maneger">{{ language.message().table_study_menbers }}
+        </th>
+        <th *ngIf="btnMembro && type == constant.group_participation">{{ language.message().table_study_menbers }}</th>
+
+        <th colspan="2" *ngIf="btnAction && type == constant.group_maneger">{{ language.message().table_study_actions }}</th>
+        <th *ngIf="btnAction && type == constant.group_participation">{{ language.message().table_study_actions }}</th>
       </tr>
     </thead>
-    <tbody>
-      <ng-container *ngIf="studyGroupPage.content.length > 0 else empty;">
-        <tr *ngFor="let item of studyGroupPage.content">
-          <td>{{ item.name }}</td>
-          <td *ngIf="btnMembro">
-            <button class="btn btn-outline-secondary btn-sm d-flex gap-1"
-              (click)="onClickedConvitGroupEmitter(item.id)">
-              <i class="bx bx-send"></i>
-              <span>{{ language.message().table_study_btn_convit }}</span>
-            </button>
-          </td>
-          <td *ngIf="btnMembro">
-            <button class="btn btn-outline-info btn-sm d-flex gap-1">
-              <i class="bx bx-menu"></i>
-              <span>{{ language.message().table_study_btn_list }}</span>
-            </button>
-          </td>
-          <td *ngIf="btnAction">
-            <button class="btn btn-outline-warning btn-sm d-flex gap-1" (click)="onClickedEditGroupEmitter(item.id)"
-              data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-              <i class="bx bx-edit"></i>
-              <span>{{ language.message().table_study_btn_edit }}</span>
-            </button>
-          </td>
-          <td *ngIf="btnAction" (click)="onClickedDeleteGroupEmitter(item.id)">
-            <button class="btn btn-outline-danger btn-sm d-flex gap-1">
-              <i class="bx bx-trash"></i>
-              <span>{{ language.message().table_study_btn_delete }}</span>
-            </button>
-          </td>
-        </tr>
-      </ng-container>
-      <ng-template #empty>
-        <tr class="text-center h-100">
-          <td colspan="5">Resultado não encontrado</td>
-        </tr>
-      </ng-template>
+    <tbody >
+      <tr *ngFor="let item of studyGroupPage.content">
+        <td>{{ item.name }}</td>
+
+        <td *ngIf="btnMembro && type == constant.group_maneger">
+          <button class="btn btn-outline-secondary btn-sm d-flex gap-1" (click)="onClickedConvitGroupEmitter(item.id)">
+            <i class="bx bx-send"></i>
+            <span>{{ language.message().table_study_btn_convit }}</span>
+          </button>
+        </td>
+        <td *ngIf="btnMembro">
+          <button class="btn btn-outline-info btn-sm d-flex gap-1"
+            (click)="navigator.studyGroupFromMembers($event, link.study_group_members, item.id, type)">
+            <i class="bx bx-menu"></i>
+            <span>{{ language.message().table_study_btn_list }}</span>
+          </button>
+        </td>
+
+        <td *ngIf="btnAction && type == constant.group_maneger">
+          <button class="btn btn-outline-warning btn-sm d-flex gap-1" (click)="onClickedEditGroupEmitter(item.id)"
+            data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <i class="bx bx-edit"></i>
+            <span>{{ language.message().table_study_btn_edit }}</span>
+          </button>
+        </td>
+        <td *ngIf="btnAction && type == constant.group_maneger" (click)="onClickedDeleteGroupEmitter(item.id)">
+          <button class="btn btn-outline-danger btn-sm d-flex gap-1">
+            <i class="bx bx-trash"></i>
+            <span>{{ language.message().table_study_btn_delete }}</span>
+          </button>
+        </td>
+
+        <td *ngIf="btnAction && type == constant.group_participation">
+          <button class="btn btn-outline-danger btn-sm d-flex gap-1">
+            <i class="bx bx-trash"></i>
+            <span>sair</span>
+          </button>
+        </td>
+
+      </tr>
     </tbody>
   </table>
 </div>
+
+<ng-template #empty>
+  <app-result-not-found />
+</ng-template>
 
 <nav aria-label="Pagination example" class="" *ngIf="studyGroupPage.totalPages > 0">
   <ul class="pagination text-white">

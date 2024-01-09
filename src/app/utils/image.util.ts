@@ -7,6 +7,8 @@ export class ImageUtil {
   private asset: string ='assets/img/';
 
   teacher_board: string = this.asset+'header-right.png';
+  profile_avatar: string = this.asset+'profile-avatar.png';
+
   country_brazil: string = this.asset+'brazil.png';
   country_france: string = this.asset+'france.png';
   country_germany: string = this.asset+'germany.png';

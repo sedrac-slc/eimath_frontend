@@ -10,6 +10,7 @@ import { LanguageService } from 'src/app/services/language.service';
 import { NavigatorService } from 'src/app/services/navigator.service';
 import { StudyGroupService } from 'src/app/services/study-group.service';
 import { SweetALertService } from 'src/app/services/sweet-alert.service';
+import { ConstantUtil } from 'src/app/utils/constant.util';
 import { ContentIdUtil } from 'src/app/utils/content-ids.util';
 import { LinkUtil } from 'src/app/utils/link.util';
 
@@ -39,6 +40,7 @@ export class GroupsManagerComponent {
 
   constructor(
     protected contentId: ContentIdUtil,
+    protected constant: ConstantUtil,
     protected language: LanguageService,
     protected studyGroupService: StudyGroupService,
     protected guardService: GuardService,
@@ -117,7 +119,7 @@ export class GroupsManagerComponent {
   }
 
   changeGroupDelete(group: Group) {
-    this.sweetAlert.confirmDeleteGroup( () =>{
+    this.sweetAlert.confirmDelete( () =>{
       this.studyGroupService.delete(group).subscribe({
         next: (_) => this.searchGroup(),
         error: (_) => this.sweetAlert.operationFalied()

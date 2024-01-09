@@ -4,16 +4,3 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .cursor-pointer{  cursor: pointer; }
 .w-max-content{ width: max-content;}
-
-.panel-message{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 50vh;
-  border: 1px dashed #ccc;
-  margin: 1rem;
-  padding: 1rem;
-  background: white;
-  border-radius: 0.2rem;
-  width: 100%;
-}

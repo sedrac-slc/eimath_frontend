@@ -4,6 +4,7 @@ import { StudyGroupPage } from 'src/app/model/grupoPage.model';
 import { UserPeople } from 'src/app/model/userPeople.model';
 import { GuardService } from 'src/app/services/guard.service';
 import { StudyGroupService } from 'src/app/services/study-group.service';
+import { ConstantUtil } from 'src/app/utils/constant.util';
 import { ContentIdUtil } from 'src/app/utils/content-ids.util';
 
 @Component({
@@ -17,6 +18,7 @@ export class GroupsParticipationComponent {
 
   constructor(
     protected contentId: ContentIdUtil,
+    protected constant: ConstantUtil,
     protected studyGroupService: StudyGroupService,
     protected guardService: GuardService
   ){

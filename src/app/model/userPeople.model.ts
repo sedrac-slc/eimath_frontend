@@ -7,6 +7,7 @@ export class UserPeople {
   gender!: string;
   username!: string;
   password!: string;
+  image!: string;
   roles: any[] = [];
   enabled: boolean = false;
   authorities: any[] = [];

@@ -21,6 +21,7 @@ import { ArithmeticRoleComponent } from './components/roles/arithmetic-role/arit
 import { MathExempleComponent } from './math-exemple/math-exemple.component';
 import { MathModalComponent } from './math-modal/math-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ResultNotFoundModule } from 'src/app/components/result-not-found/result-not-found.module';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SelectorLanguageModule,
     DashboardModule,
     FormUserModule,
-    FormInputModule
+    FormInputModule,
+    ResultNotFoundModule
   ]
 })
 export class MathModule { }
