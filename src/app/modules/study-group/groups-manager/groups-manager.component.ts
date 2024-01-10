@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, catchError, of } from 'rxjs';
+import { Convit } from 'src/app/model/convit.model';
 import { Group } from 'src/app/model/grupo.model';
 import { StudyGroupPage } from 'src/app/model/grupoPage.model';
 import { UserPeople } from 'src/app/model/userPeople.model';
+import { ConvitsService } from 'src/app/services/convits.service';
 import { FormValiedService } from 'src/app/services/form-valied.service';
 import { GuardService } from 'src/app/services/guard.service';
 import { LanguageService } from 'src/app/services/language.service';
@@ -13,6 +15,7 @@ import { SweetALertService } from 'src/app/services/sweet-alert.service';
 import { ConstantUtil } from 'src/app/utils/constant.util';
 import { ContentIdUtil } from 'src/app/utils/content-ids.util';
 import { LinkUtil } from 'src/app/utils/link.util';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-groups-manager',
@@ -42,10 +45,11 @@ export class GroupsManagerComponent {
     protected contentId: ContentIdUtil,
     protected constant: ConstantUtil,
     protected language: LanguageService,
-    protected studyGroupService: StudyGroupService,
     protected guardService: GuardService,
     protected formValied: FormValiedService,
     protected sweetAlert: SweetALertService,
+    protected studyGroupService: StudyGroupService,
+    protected convitService: ConvitsService,
 
     private formBuilder: FormBuilder
   ) {
@@ -119,18 +123,51 @@ export class GroupsManagerComponent {
   }
 
   changeGroupDelete(group: Group) {
-    this.sweetAlert.confirmDelete( () =>{
+    this.sweetAlert.confirmDelete(() => {
       this.studyGroupService.delete(group).subscribe({
         next: (_) => this.searchGroup(),
         error: (_) => this.sweetAlert.operationFalied()
       })
-    } );
+    });
 
   }
 
   changeGroupConvit(group: Group) {
-    console.log(group);
+    Swal.fire({
+      title: "Digita o seu email: ",
+      input: "text",
+      inputAttributes: {
+        autocapitalize: "off"
+      },
+      showCancelButton: true,
+      showLoaderOnConfirm: true,
+      confirmButtonText: "Enviar",
+      cancelButtonText: "Cancelar",
+      preConfirm: async (email) => {
+        let person = this.guardService.responseTokenUser().person;
+        let convit = new Convit(email, group, person);
+        if (this.validarEmail(email)) {
+          this.convitService.save(convit).subscribe({
+            next: (resp) => convit = resp,
+            error: (_) => Swal.fire({html: 'Erro ao enviar convite', icon: 'error'})
+          })
+        }else{
+          Swal.fire('Digita um email válido');
+        }
+        console.log(convit);
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+      }
+    });
+
   }
 
+  private validarEmail(email: string): boolean {
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regexEmail.test(email);
+  }
 
 }

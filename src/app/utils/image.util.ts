@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 export class ImageUtil {
   private asset: string ='assets/img/';
 
+
+  convit_envelope: string = this.asset+'envelope.png';
   teacher_board: string = this.asset+'header-right.png';
   profile_avatar: string = this.asset+'profile-avatar.png';
 

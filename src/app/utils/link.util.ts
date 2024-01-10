@@ -37,4 +37,6 @@ export class LinkUtil {
   api_members: string = environment.API_URL + '/members';
   api_members_by_group: string = this.api_members+'/by-group';
 
+  api_convits: string = environment.API_URL + '/convits';
+
 }

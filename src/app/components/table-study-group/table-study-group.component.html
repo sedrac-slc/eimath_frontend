@@ -1,7 +1,9 @@
 <div class="table-responsive mt-3" *ngIf="studyGroupPage.content.length > 0 else empty;">
   <table class="table table-borderless table-hover border rounded">
     <thead class="table-primary">
-      <tr>
+      <tr [ngClass]="{
+        'text-center': type == constant.group_maneger
+      }">
         <th>{{ language.message().register_name }}</th>
         <th colspan="2" *ngIf="btnMembro && type == constant.group_maneger">{{ language.message().table_study_menbers }}
         </th>
