@@ -13,7 +13,7 @@
       </div>
       <div class="logo h3 text-white mb-4 mt-4 text-center">{{ constante.site_name }}</div>
       <ul class="list-unstyled components mb-5">
-        <li class="active">
+        <li class="active" >
           <a (click)="navigator.fromEvent(link.public,$event)">
             <i class="bx bx-home mr-3"></i>
             <span>{{ language.message().dashboard_home_page }}</span>
@@ -66,6 +66,12 @@
               </a>
             </li>
           </ul>
+        </li>
+        <li class="" >
+          <a (click)="navigator.fromEvent(link.convits,$event)">
+            <i class="bx bx-envelope mr-3"></i>
+            <span>{{ language.message().dashboard_convit }}</span>
+          </a>
         </li>
       </ul>
 

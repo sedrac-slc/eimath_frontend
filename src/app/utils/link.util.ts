@@ -9,6 +9,7 @@ export class LinkUtil {
   public: string ='';
   math: string = 'math';
   study_group: string ='study-group';
+  convits: string ='convits';
 
   public_login: string ='login';
   public_register: string ='register';

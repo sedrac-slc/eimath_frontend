@@ -4,6 +4,7 @@ import { GuardService } from './guard.service';
 import { LinkUtil } from '../utils/link.util';
 import { Convit } from '../model/convit.model';
 import { Observable } from 'rxjs';
+import { ConvitPage } from '../model/convitPage.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,22 @@ export class ConvitsService {
      });
   }
 
+  public findAllByUserId(uuid: string): Observable<ConvitPage>{
+    return this.httpClient.get<ConvitPage>(`${this.link.api_convits}/by-people?people=${uuid}`,{
+       headers: this.httpHeaders
+     });
+  }
+
+  public pagefindAllByUserId(uuid: string, page: number = 0): Observable<ConvitPage>{
+    return this.httpClient.get<ConvitPage>(`${this.link.api_convits}/by-people?people=${uuid}&page=${page}`,{
+      headers: this.httpHeaders
+    });
+  }
+
+  public delete(convit: Convit): Observable<void>{
+    return this.httpClient.delete<void>(`${this.link.api_convits}/${convit.id}`,{
+       headers: this.httpHeaders
+     });
+  }
 
 }

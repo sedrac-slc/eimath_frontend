@@ -21,7 +21,7 @@ import { LinkUtil } from 'src/app/utils/link.util';
 export class MembersComponent {
 
   member!: Member;
-  memberPage!: MemberPage;
+  memberPage: MemberPage;
   group_type: string = '';
 
   constructor(

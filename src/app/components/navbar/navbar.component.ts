@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LanguageService } from 'src/app/services/language.service';
 import { ConstantUtil } from 'src/app/utils/constant.util';
 
 @Component({
@@ -7,7 +8,7 @@ import { ConstantUtil } from 'src/app/utils/constant.util';
 })
 export class NavbarComponent {
 
-  constructor(protected constant: ConstantUtil){
+  constructor(protected constant: ConstantUtil, protected language: LanguageService){
 
   }
 

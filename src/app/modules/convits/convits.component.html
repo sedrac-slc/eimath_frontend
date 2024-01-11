@@ -1,0 +1,64 @@
+<app-dashboard>
+  <div [id]="contentId.dashboard_content">
+
+    <div class="table-responsive mt-3" *ngIf="convitPage.content.length > 0 else resultEmpty;">
+      <table class="table table-borderless table-hover border rounded">
+        <thead class="table-primary">
+          <tr>
+            <th>{{ language.message().dashboard_study_group }}</th>
+            <th colspan="2">{{ language.message().table_study_actions }}</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let item of convitPage.content">
+            <td>{{ item.group.name }}</td>
+            <td>
+              <button class="btn btn-outline-warning btn-sm d-flex gap-1"
+                data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <i class="bx bx-edit"></i>
+                <span>{{ language.message().accept }}</span>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-outline-danger btn-sm d-flex gap-1">
+                <i class="bx bx-trash"></i>
+                <span>{{ language.message().table_study_btn_delete }}</span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #resultEmpty>
+      <app-result-not-found/>
+    </ng-template>
+
+    <nav aria-label="Pagination example" class="" *ngIf="convitPage.totalPages > 0">
+      <ul class="pagination text-white">
+        <li class="page-item" *ngIf="!convitPage.first">
+          <a class="page-link" (click)="pagination(convitPage.pageable.pageNumber-1)" aria-label="Next">
+            <span aria-hidden="true">
+              <i class="bx bx-left-arrow"></i>
+            </span>
+          </a>
+        </li>
+        <li class="page-item" *ngFor="let pageNum of [].constructor(convitPage.totalPages); index as i">
+          <a class="page-link active" *ngIf="convitPage.pageable.pageNumber == i; else innerPage"
+            (click)="pagination(i)">{{ i + 1 }}</a>
+          <ng-template #innerPage>
+            <a class="page-link" (click)="pagination(i)">{{ i + 1 }}</a>
+          </ng-template>
+        </li>
+        <li class="page-item" *ngIf="!convitPage.last">
+          <a class="page-link" (click)="pagination(convitPage.pageable.pageNumber+1)" aria-label="Next">
+            <span aria-hidden="true">
+              <i class="bx bx-right-arrow"></i>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+</app-dashboard>
