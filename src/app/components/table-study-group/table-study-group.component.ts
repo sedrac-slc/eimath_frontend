@@ -1,6 +1,8 @@
+import { group } from '@angular/animations';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Group } from 'src/app/model/grupo.model';
 import { StudyGroupPage } from 'src/app/model/grupoPage.model';
+import { Member } from 'src/app/model/member.model';
 import { UserPeople } from 'src/app/model/userPeople.model';
 import { LanguageService } from 'src/app/services/language.service';
 import { NavigatorService } from 'src/app/services/navigator.service';
@@ -25,6 +27,7 @@ export class TableStudyGroupComponent {
   @Output() onClickedEditGroup: EventEmitter<Group>;
   @Output() onClickedDeleteGroup: EventEmitter<Group>;
   @Output() onClickedConvitGroup: EventEmitter<Group>;
+  @Output() onClickedDeleteMember: EventEmitter<Member>;
 
   constructor(
     protected language: LanguageService,
@@ -38,28 +41,30 @@ export class TableStudyGroupComponent {
     this.onClickedEditGroup = new EventEmitter();
     this.onClickedDeleteGroup = new EventEmitter();
     this.onClickedConvitGroup = new EventEmitter();
-  }
-
-  private getGroup(uuid: string){
-    let list: Array<Group> = this.studyGroupPage.content;
-    let index = list.findIndex(it => it.id == uuid);
-    return list[index];
+    this.onClickedDeleteMember = new EventEmitter();
   }
 
   onClickedPageEmitter(page: number) {
     this.onClickedPage.emit(page);
   }
 
-  onClickedEditGroupEmitter(uuid: string) {
-    this.onClickedEditGroup.emit(this.getGroup(uuid));
+  onClickedEditGroupEmitter(group: Group) {
+    this.onClickedEditGroup.emit(group);
   }
 
-  onClickedDeleteGroupEmitter(uuid: string) {
-    this.onClickedDeleteGroup.emit(this.getGroup(uuid));
+  onClickedDeleteGroupEmitter(group: Group) {
+    this.onClickedDeleteGroup.emit(group);
   }
 
-  onClickedConvitGroupEmitter(uuid: string) {
-    this.onClickedConvitGroup.emit(this.getGroup(uuid));
+  onClickedConvitGroupEmitter(group: Group) {
+    this.onClickedConvitGroup.emit(group);
+  }
+
+  onClickedDeleteMemberEmitter(group: Group){
+    let member = new Member();
+    member.group = group;
+    member.userPeople = this.person;
+    this.onClickedDeleteMember.emit(member);
   }
 
 }

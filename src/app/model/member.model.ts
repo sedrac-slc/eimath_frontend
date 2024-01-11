@@ -5,4 +5,5 @@ export class Member{
   id!: string;
   group!: Group;
   userPeople!: UserPeople;
+
 }

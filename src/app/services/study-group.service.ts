@@ -6,6 +6,7 @@ import { GuardService } from './guard.service';
 import { LinkUtil } from '../utils/link.util';
 import { FormGroup } from '@angular/forms';
 import { Group } from '../model/grupo.model';
+import { Member } from '../model/member.model';
 
 @Injectable({
   providedIn: 'root'
@@ -67,5 +68,10 @@ export class StudyGroupService {
      });
   }
 
+  public deleteMember(member: Member): Observable<void>{
+    return this.httpClient.post<void>(`${this.link.api_study_group}/by-member`,member,{
+       headers: this.httpHeaders
+     });
+  }
 
 }

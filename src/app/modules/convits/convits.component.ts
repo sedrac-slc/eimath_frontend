@@ -4,6 +4,7 @@ import { ConvitPage } from 'src/app/model/convitPage.model';
 import { ConvitsService } from 'src/app/services/convits.service';
 import { GuardService } from 'src/app/services/guard.service';
 import { LanguageService } from 'src/app/services/language.service';
+import { SweetALertService } from 'src/app/services/sweet-alert.service';
 import { ContentIdUtil } from 'src/app/utils/content-ids.util';
 import { ImageUtil } from 'src/app/utils/image.util';
 
@@ -23,6 +24,7 @@ export class ConvitsComponent {
     protected language: LanguageService,
     protected guardService: GuardService,
     private convitService: ConvitsService,
+    protected sweetAlert: SweetALertService
   ){
     this.convitPage = new ConvitPage();
     this.searchConvits();
@@ -42,6 +44,15 @@ export class ConvitsComponent {
      next: (resp) =>  this.convitPage = resp,
      error: (_) => {}
     })
+  }
+
+  changeConvitDelete(convit: Convit) {
+    this.sweetAlert.confirmDelete(() => {
+      this.convitService.delete(convit).subscribe({
+        next: (_) => this.searchConvits(),
+        error: (_) => this.sweetAlert.operationFalied()
+      })
+    });
   }
 
 }

@@ -3,6 +3,7 @@
 
     <app-table-study-group [studyGroupPage]="studyGroupPage" [person]="person"
     [type]="constant.group_participation"
+    (onClickedDeleteMember)="changeMemberDelete($event)"
     />
 
   </div>
