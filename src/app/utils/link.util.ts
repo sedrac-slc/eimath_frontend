@@ -7,9 +7,10 @@ import { environment } from 'src/environments/environment.prod';
 export class LinkUtil {
 
   public: string ='';
+  chat: string ='chat';
   math: string = 'math';
-  study_group: string ='study-group';
   convits: string ='convits';
+  study_group: string ='study-group';
 
   public_login: string ='login';
   public_register: string ='register';
@@ -19,6 +20,9 @@ export class LinkUtil {
 
   study_group_members: string = 'membres';
   study_group_members_parm: string = this.study_group_members+'/:id/:group_type';
+
+  study_group_chat: string = 'chat';
+  study_group_chat_parm: string = this.study_group_chat+'/:id/:group_type';
 
   math_arithmetic: string ='arithmetic';
   math_equation: string = 'equation';

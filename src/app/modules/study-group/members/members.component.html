@@ -7,7 +7,7 @@
     : navigator.studyGroupFromEvent(link.study_group_participation, $event)
   ">
     <i class="bx bx-arrow-back"></i>
-    <span>voltar</span>
+    <span>{{ language.message().back }}</span>
   </button>
 
     <section *ngIf="memberPage.content.length > 0; else resultEmpty">

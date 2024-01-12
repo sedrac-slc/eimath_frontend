@@ -46,6 +46,15 @@ export class ConvitsComponent {
     })
   }
 
+  changeConvitAccept(convit: Convit) {
+    this.sweetAlert.confirmConvit(() => {
+      this.convitService.acceptConvite(convit).subscribe({
+        next: (_) => this.searchConvits(),
+        error: (_) => this.sweetAlert.operationFalied()
+      })
+    });
+  }
+
   changeConvitDelete(convit: Convit) {
     this.sweetAlert.confirmDelete(() => {
       this.convitService.delete(convit).subscribe({

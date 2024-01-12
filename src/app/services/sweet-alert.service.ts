@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
-import { StudyGroupService } from './study-group.service';
+import { LanguageService } from './language.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SweetALertService {
 
-  constructor(
-    private groupService: StudyGroupService
-  ) {
-
+  constructor(private language: LanguageService) {
   }
 
-  private swalBasic(icon: any, title: any, text: any, footer: any = '<a href="/">Voltar a página principal?</a>'): void {
+  private swalBasic(icon: any, title: any, text: any, footer: any = ''): void {
+    if(footer == '') footer = `<a href="/">${this.language.message().sweet_back_home}?</a>`
     Swal.fire({ icon: icon, title: title, text: text, footer: footer });
   }
 
@@ -25,8 +23,8 @@ export class SweetALertService {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      cancelButtonText: 'Cancelar',
-      confirmButtonText: 'Confirma'
+      cancelButtonText: this.language.message().cancel,
+      confirmButtonText: this.language.message().confirm
     }).then((result) => {
       if (result.isConfirmed) {
           runnable();
@@ -35,39 +33,43 @@ export class SweetALertService {
   }
 
   validateFalied(){
-    this.swalBasic('error','Validação','Por verifica se os campos foram bem preenchidos!')
+    this.swalBasic('error',this.language.message().sweet_valid,`${this.language.message().sweet_verify_fields}!`)
   }
 
   loginFalied(){
-    this.swalBasic('error','Validação','Crendências inválidas!')
+    this.swalBasic('error',this.language.message().sweet_valid,`${this.language.message().sweet_crend_invalid}!`)
   }
 
   passwordFalied(){
-    this.swalBasic('warning','Validação','As senhas introduzidas são diferentes!')
+    this.swalBasic('warning',this.language.message().sweet_valid,`${this.language.message().sweet_pass_dif}!`)
   }
 
   createAccountFalied(){
-    this.swalBasic('warning','Validação','Erro ao criar aconta!')
+    this.swalBasic('warning',this.language.message().sweet_valid,`${this.language.message().sweet_error_create_account}!`)
   }
 
   copyFalied(){
-    this.swalBasic('warning','Validação','Erro no processo de copiar o texto!')
+    this.swalBasic('warning',this.language.message().sweet_valid,`${this.language.message().sweet_error_copy}!`)
   }
 
   copyForInputFalied(){
-    this.swalBasic('warning','Validação','Erro no processo de copiar o texto para o input!')
+    this.swalBasic('warning',this.language.message().sweet_valid,`${this.language.message().sweet_error_copy_boxtext}!`)
   }
 
   operationSuccess(){
-    this.swalBasic('success','Validação','Operação realizada com successo!')
+    this.swalBasic('success',this.language.message().sweet_valid,`${this.language.message().sweet_operation_success}!`)
   }
 
   operationFalied(){
-    this.swalBasic('error','Validação','Não possível a realização da operação!')
+    this.swalBasic('error',this.language.message().sweet_valid,`${this.language.message().sweet_operation_failed}!`)
   }
 
   confirmDelete(runnable: () => void){
-    this.swalConfirm(runnable,'Tens certeza?',"confirma acção de elimanação");
+    this.swalConfirm(runnable,this.language.message().sweet_confirm_dialog+"?",this.language.message().sweet_confirm_delete);
+  }
+
+  confirmConvit(runnable: () => void){
+    this.swalConfirm(runnable,this.language.message().sweet_confirm_dialog+"?",this.language.message().sweet_confirm_invit);
   }
 
 }

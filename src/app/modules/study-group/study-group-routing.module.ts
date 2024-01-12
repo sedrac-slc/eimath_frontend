@@ -6,6 +6,7 @@ import { GroupsParticipationComponent } from './groups-participation/groups-part
 
 import { LinkUtil } from 'src/app/utils/link.util';
 import { MembersComponent } from './members/members.component';
+import { ChatComponent } from './chat/chat.component';
 
 const URL = new LinkUtil();
 
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: URL.study_group_maneger, component: GroupsManagerComponent },
   { path: URL.study_group_participation, component: GroupsParticipationComponent },
   { path: URL.study_group_members_parm, component: MembersComponent },
+  { path: URL.study_group_chat_parm, component: ChatComponent },
 ];
 
 @NgModule({

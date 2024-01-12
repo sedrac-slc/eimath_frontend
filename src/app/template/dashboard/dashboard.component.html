@@ -1,11 +1,14 @@
 <div class="wrapper d-flex align-items-stretch">
   <nav id="sidebar" class="bg-primary">
-    <div class="custom-menu">
+    <div class="custom-menu d-flex gap-1 flex-column">
       <button type="button" id="sidebarCollapse" class="btn bg-primary border text-white"
         (click)="toogleSidebarCollapse()">
         <i class="bx bx-menu"></i>
         <span class="sr-only">Toggle Menu</span>
       </button>
+
+      <ng-content [select]="'#'+contentId.dashboard_button_back"/>
+
     </div>
     <div class="p-4">
       <div class="w-max-content m-auto">

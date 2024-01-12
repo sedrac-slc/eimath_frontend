@@ -47,4 +47,11 @@ export class ConvitsService {
      });
   }
 
+  public acceptConvite(convit: Convit): Observable<void>{
+    return this.httpClient.post<void>(`${this.link.api_convits}/accept`,convit,{
+       headers: this.httpHeaders
+     });
+  }
+
+
 }

@@ -1,12 +1,12 @@
 <div class="table-responsive mt-3" *ngIf="studyGroupPage.content.length > 0 else empty;">
-  <table class="table table-borderless table-hover border rounded">
+  <table class="table table-borderless table-hover border rounded" [ngClass]="{
+    'text-center': type == constant.group_maneger
+  }">
     <thead class="table-primary">
-      <tr [ngClass]="{
-        'text-center': type == constant.group_maneger
-      }">
+      <tr>
         <th>{{ language.message().register_name }}</th>
-        <th colspan="2" *ngIf="btnMembro && type == constant.group_maneger">{{ language.message().table_study_menbers }}
-        </th>
+        <th>{{ language.message().table_study_chat }}</th>
+        <th colspan="2" *ngIf="btnMembro && type == constant.group_maneger">{{ language.message().table_study_menbers }}</th>
         <th *ngIf="btnMembro && type == constant.group_participation">{{ language.message().table_study_menbers }}</th>
 
         <th colspan="2" *ngIf="btnAction && type == constant.group_maneger">{{ language.message().table_study_actions }}</th>
@@ -16,7 +16,13 @@
     <tbody >
       <tr *ngFor="let item of studyGroupPage.content">
         <td>{{ item.name }}</td>
-
+        <td>
+          <button class="btn btn-outline-success btn-sm d-flex gap-1"
+          (click)="navigator.studyGroupFrom($event, link.study_group_chat, item.id, type)">
+            <i class="bx bx-chat"></i>
+            <span>{{ language.message().table_study_enter }}</span>
+          </button>
+        </td>
         <td *ngIf="btnMembro && type == constant.group_maneger">
           <button class="btn btn-outline-secondary btn-sm d-flex gap-1" (click)="onClickedConvitGroupEmitter(item)">
             <i class="bx bx-send"></i>
@@ -25,7 +31,7 @@
         </td>
         <td *ngIf="btnMembro">
           <button class="btn btn-outline-info btn-sm d-flex gap-1"
-            (click)="navigator.studyGroupFromMembers($event, link.study_group_members, item.id, type)">
+            (click)="navigator.studyGroupFrom($event, link.study_group_members, item.id, type)">
             <i class="bx bx-menu"></i>
             <span>{{ language.message().table_study_btn_list }}</span>
           </button>
@@ -48,7 +54,7 @@
         <td *ngIf="btnAction && type == constant.group_participation" (click)="onClickedDeleteMemberEmitter(item)">
           <button class="btn btn-outline-danger btn-sm d-flex gap-1">
             <i class="bx bx-trash"></i>
-            <span>sair</span>
+            <span>{{ language.message().table_study_deny }}</span>
           </button>
         </td>
 

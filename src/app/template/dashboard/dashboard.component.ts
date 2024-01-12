@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { GuardService } from 'src/app/services/guard.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { NavigatorService } from 'src/app/services/navigator.service';
@@ -13,6 +13,7 @@ import { LinkUtil } from 'src/app/utils/link.util';
   encapsulation: ViewEncapsulation.None,
 })
 export class DashboardComponent {
+  @Input() back: string = "";
 
   constructor(
     protected contentId: ContentIdUtil,

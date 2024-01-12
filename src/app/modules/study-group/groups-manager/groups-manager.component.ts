@@ -99,16 +99,18 @@ export class GroupsManagerComponent {
 
   submit(event: Event) {
     event.preventDefault();
-    switch (this.action) {
-      case this.action_create:
-        this.subscribeOperation(this.studyGroupService.save(this.form));
-        break;
-      case this.action_update:
-        this.subscribeOperation(this.studyGroupService.update(this.form));
-        break;
-      case this.action_convit:
-        break;
-    }
+    try {
+      switch (this.action) {
+        case this.action_create:
+          this.subscribeOperation(this.studyGroupService.save(this.form));
+          break;
+        case this.action_update:
+          this.subscribeOperation(this.studyGroupService.update(this.form));
+          break;
+        case this.action_convit:
+          break;
+      }
+    } catch (_) { this.sweetAlert.operationFalied(); }
   }
 
   changeGroupCreate() {
@@ -124,45 +126,46 @@ export class GroupsManagerComponent {
 
   changeGroupDelete(group: Group) {
     this.sweetAlert.confirmDelete(() => {
-      this.studyGroupService.delete(group).subscribe({
-        next: (_) => this.searchGroup(),
-        error: (_) => this.sweetAlert.operationFalied()
-      })
+      try {
+        this.studyGroupService.delete(group).subscribe({
+          next: (_) => this.searchGroup(),
+          error: (_) => this.sweetAlert.operationFalied()
+        })
+      } catch (_) { this.sweetAlert.operationFalied(); }
     });
-
   }
 
   changeGroupConvit(group: Group) {
-    Swal.fire({
-      title: "Digita o seu email: ",
-      input: "text",
-      inputAttributes: {
-        autocapitalize: "off"
-      },
-      showCancelButton: true,
-      showLoaderOnConfirm: true,
-      confirmButtonText: "Enviar",
-      cancelButtonText: "Cancelar",
-      preConfirm: async (email) => {
-        let person = this.guardService.responseTokenUser().person;
-        let convit = new Convit(email, group, person);
-        if (this.validarEmail(email)) {
-          this.convitService.save(convit).subscribe({
-            next: (resp) => convit = resp,
-            error: (_) => Swal.fire({html: 'Erro ao enviar convite', icon: 'error'})
-          })
-        }else{
-          Swal.fire('Digita um email válido');
-        }
-        console.log(convit);
-      },
-      allowOutsideClick: () => !Swal.isLoading()
-    }).then((result) => {
-      if (result.isConfirmed) {
-
-      }
-    });
-
+    try {
+      Swal.fire({
+        title: this.language.message().register_digit_email,
+        input: "email",
+        inputAttributes: {
+          autocapitalize: "off"
+        },
+        showCancelButton: true,
+        showLoaderOnConfirm: true,
+        cancelButtonColor: "#DC3545",
+        confirmButtonColor: "#866ec7",
+        confirmButtonText: this.language.message().send,
+        cancelButtonText: this.language.message().cancel,
+        preConfirm: async (email) => {
+          let person = this.guardService.responseTokenUser().person;
+          let convit = new Convit(email, group, person);
+          if (this.validarEmail(email)) {
+            this.convitService.save(convit).subscribe({
+              next: (resp) => convit = resp,
+              error: (_) => Swal.fire({ html: this.language.message().sweet_operation_failed, icon: 'error' })
+            })
+          } else {
+            Swal.fire(this.language.message().sweet_verify_fields);
+          }
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((_) => {
+        //if (result.isConfirmed) {}
+      });
+    } catch (_) { this.sweetAlert.operationFalied(); }
   }
 
   private validarEmail(email: string): boolean {

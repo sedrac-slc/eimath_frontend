@@ -8,6 +8,7 @@ import { ConstantUtil } from '../utils/constant.util';
 })
 export class NavigatorService {
 
+  url: string = '';
 
   constructor(private router: Router, private link: LinkUtil, private constant: ConstantUtil){
 
@@ -19,6 +20,7 @@ export class NavigatorService {
   }
 
   from(view: string): void {
+    this.url = view;
     this.router.navigate([view]);
   }
 
@@ -27,23 +29,22 @@ export class NavigatorService {
     this.fromEvent(url,event);
   }
 
-  studyGroupFromMembers(event: Event,view: string, groupId: string, type: string ): void {
+  studyGroupFrom(event: Event,view: string, groupId: string, type: string ): void {
     event.preventDefault();
     switch(type){
       case this.constant.group_maneger:
       case this.constant.group_participation:
-        let url : string = '/'+this.link.study_group+'/'+view;
-        this.router.navigate([url, groupId, type]);
+        this.url = '/'+this.link.study_group+'/'+view;
+        this.router.navigate([this.url, groupId, type]);
         break;
       default:
       this.dashboardRedirect();
     }
-
   }
 
   mathFromEvent(view: string, event: Event): void {
-    let url : string = '/'+this.link.math+'/'+view;
-    this.fromEvent(url,event);
+    this.url  = '/'+this.link.math+'/'+view;
+    this.fromEvent(this.url,event);
   }
 
   loginRedirect(){

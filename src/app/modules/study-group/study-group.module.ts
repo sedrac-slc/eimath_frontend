@@ -12,7 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableStudyGroupModule } from 'src/app/components/table-study-group/table-study-group.module';
 import { MembersComponent } from './members/members.component';
 import { ResultNotFoundModule } from 'src/app/components/result-not-found/result-not-found.module';
-
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +20,7 @@ import { ResultNotFoundModule } from 'src/app/components/result-not-found/result
     GroupsManagerComponent,
     GroupsParticipationComponent,
     MembersComponent,
+    ChatComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +30,6 @@ import { ResultNotFoundModule } from 'src/app/components/result-not-found/result
     DashboardModule,
     FormsModule,
     ReactiveFormsModule,
-
     FormInputModule,
     ResultNotFoundModule
   ]

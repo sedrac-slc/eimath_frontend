@@ -1,0 +1,19 @@
+<app-dashboard>
+
+  <div id="dashboard_button_back">
+    <button type="button" id="sidebarCollapse1" class="btn bg-primary border text-white" (click)="
+      group_type == constant.group_maneger
+        ? navigator.studyGroupFromEvent(link.study_group_maneger, $event)
+      : navigator.studyGroupFromEvent(link.study_group_participation, $event)">
+      <i class="bx bx-arrow-back"></i>
+      <span class="sr-only">Toggle Menu</span>
+    </button>
+  </div>
+
+  <div [id]="contentId.dashboard_content">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
+    voluptas similique saepe fugit! Incidunt excepturi id reprehenderit?
+    Quia iste neque perferendis debitis natus repellendus. Blanditiis consequuntur assumenda unde est et?
+  </div>
+
+</app-dashboard>
