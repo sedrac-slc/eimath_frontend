@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LanguageService } from 'src/app/services/language.service';
 import { NavigatorService } from 'src/app/services/navigator.service';
@@ -11,7 +11,8 @@ import { LinkUtil } from 'src/app/utils/link.util';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ChatComponent {
   group_type: string = '';

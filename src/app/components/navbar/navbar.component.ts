@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LanguageService } from 'src/app/services/language.service';
 import { ConstantUtil } from 'src/app/utils/constant.util';
+import { LinkUtil } from 'src/app/utils/link.util';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +9,11 @@ import { ConstantUtil } from 'src/app/utils/constant.util';
 })
 export class NavbarComponent {
 
-  constructor(protected constant: ConstantUtil, protected language: LanguageService){
+  constructor(
+    protected link: LinkUtil,
+    protected constant: ConstantUtil,
+    protected language: LanguageService
+  ){
 
   }
 
