@@ -56,14 +56,14 @@
   <div class="mt-2 p-2">
     <div class="row w-max-content">
       <div class="col p-1" *ngIf="!formIsAuth; else btnVar">
-        <button class="btn btn-outline-success d-flex gap-1" type="submit" [disabled]="!form.valid">
+        <button class="btn btn-outline-success d-flex gap-1 btn-if" type="submit">
           <i class="bx bx-log-in"></i>
           <span>Guardar</span>
         </button>
       </div>
       <ng-template #btnVar>
         <div class="col p-1" *ngIf="!disabledInputs">
-          <button class="btn btn-outline-success d-flex gap-1" type="submit" [disabled]="!form.valid">
+          <button class="btn btn-outline-success d-flex gap-1 btn-not-if" type="submit">
             <i class="bx bx-log-in"></i>
             <span>Guardar</span>
           </button>

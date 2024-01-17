@@ -49,9 +49,9 @@
             </li>
           </ul>
         </li>
-        <li>
+        <li *ngIf="guardaService.confirmedPerson()">
           <a (click)="toogleDropDown('studyGroupMenu')" data-toggle="collapse" aria-expanded="false"
-            class="dropdown-toggle" *ngIf="guardaService.confirmedPerson()">
+            class="dropdown-toggle">
             <i class='bx bx-book mr-3'></i>
             <span>{{ language.message().dashboard_study_group }}</span>
           </a>
@@ -70,7 +70,7 @@
             </li>
           </ul>
         </li>
-        <li class="" >
+        <li *ngIf="guardaService.confirmedPerson()">
           <a (click)="navigator.fromEvent(link.convits,$event)">
             <i class="bx bx-envelope mr-3"></i>
             <span>{{ language.message().dashboard_convit }}</span>

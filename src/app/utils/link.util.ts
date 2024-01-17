@@ -28,6 +28,8 @@ export class LinkUtil {
   math_equation: string = 'equation';
   math_radical: string ='radical';
 
+  api_users: string = '/users';
+  api_users_password_update: string = '/users/password-update';
 
   api_register: string = environment.API_URL + '/authorization/register';
   api_login: string = environment.API_URL + '/authorization/login';
@@ -41,6 +43,9 @@ export class LinkUtil {
 
   api_members: string = environment.API_URL + '/members';
   api_members_by_group: string = this.api_members+'/by-group';
+
+  api_messages: string = environment.API_URL + '/messages';
+  api_messages_by_group: string = this.api_messages+'/by-group';
 
   api_convits: string = environment.API_URL + '/convits';
 

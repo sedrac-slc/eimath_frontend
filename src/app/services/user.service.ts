@@ -1,19 +1,43 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ResponseTokenUser } from '../model/responseTokenUser.model';
 import { LinkUtil } from '../utils/link.util';
+import { UserPeople } from '../model/userPeople.model';
+import { GuardService } from './guard.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private httpClient: HttpClient, private link : LinkUtil) { }
+  private httpHeaders: HttpHeaders;
+
+  constructor(
+    private link : LinkUtil,
+    private httpClient: HttpClient,
+    private guardService: GuardService
+  ) {
+    this.httpHeaders = this.guardService.confirmedPerson()
+      ? new HttpHeaders({ 'Content-Type': 'application/json',  Authorization: `Bearer ${this.guardService.responseTokenUser().token}`
+     }) : new HttpHeaders({ 'Content-Type': 'application/json'});
+  }
 
   public registerAuth(form: FormGroup) {
     return this.httpClient.post<ResponseTokenUser>(this.link.api_register, JSON.stringify(form.value),{
       headers: { 'Content-Type': 'application/json'}
+    });
+  }
+
+  public updateAuth(form: FormGroup) {
+    return this.httpClient.put<UserPeople>(this.link.api_users, JSON.stringify(form.value), {
+      headers: this.httpHeaders
+    });
+  }
+
+  public updatePassowrdAuth(form: FormGroup) {
+    return this.httpClient.put<void>(this.link.api_users_password_update, JSON.stringify(form.value),{
+      headers: this.httpHeaders
     });
   }
 

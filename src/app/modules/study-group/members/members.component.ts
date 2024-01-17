@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MathPageable } from 'src/app/model/mathPageable.model';
 import { Member } from 'src/app/model/member.model';
 import { MemberPage } from 'src/app/model/memberPage.model';
 import { LanguageService } from 'src/app/services/language.service';
@@ -35,7 +34,7 @@ export class MembersComponent {
     private memberService: MemberService,
     private route: ActivatedRoute
   ){
-    this.memberPage = new MathPageable();
+    this.memberPage = new MemberPage();
     switch(this.route.snapshot.params["group_type"]){
       case this.constant.group_maneger:
       case this.constant.group_participation:

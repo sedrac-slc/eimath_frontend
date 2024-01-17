@@ -58,11 +58,12 @@ export class FormUserComponent {
     this.onSubmit = new EventEmitter();
   }
 
-  onSubmitEmitter(evt: any){
+  onSubmitEmitter(evt: Event){
     evt.preventDefault();
     if(!this.visiblePassword){
       this.form.value.password = this.form.value.password_confirm = "undefined";
     }
+    console.log("emitindo");
     this.onSubmit.emit(this.form);
   }
 
