@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ResponseTokenUser } from 'src/app/model/responseTokenUser.model';
 import { GuardService } from 'src/app/services/guard.service';
 import { SweetALertService } from 'src/app/services/sweet-alert.service';
@@ -19,7 +19,7 @@ export class MathComponent {
     protected contentId: ContentIdUtil,
     protected guardService: GuardService,
     protected userService: UserService,
-    protected sweetAlert: SweetALertService
+    protected sweetAlert: SweetALertService,
   ){
     this.responseTokenUser = this.guardService.responseTokenUser();
   }
@@ -36,12 +36,9 @@ export class MathComponent {
         this.sweetAlert.operationFalied();
       }
     })
+
   }
 
-  updatePassoword(form: FormGroup){
-    this.userService.updatePassowrdAuth(form).subscribe({
-      error: (_) => this.sweetAlert.operationFalied()
-    })
-  }
+
 
 }

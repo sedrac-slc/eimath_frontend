@@ -74,5 +74,7 @@ export default {
   sweet_operation_failed: "Não possível a realização da operação",
   sweet_confirm_dialog: "Tens certeza",
   sweet_confirm_delete: "Confirma acção de elimanação",
-  sweet_confirm_invit: "Que desejas aceitar o convite"
+  sweet_confirm_invit: "Que desejas aceitar o convite",
+  digit_new_password: "Enter the new password",
+  digit_current_password: "Digita a senha nova"
 }

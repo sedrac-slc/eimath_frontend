@@ -28,8 +28,8 @@ export class LinkUtil {
   math_equation: string = 'equation';
   math_radical: string ='radical';
 
-  api_users: string = '/users';
-  api_users_password_update: string = '/users/password-update';
+  api_users: string = environment.API_URL + '/users';
+  api_users_password_update: string =  this.api_users + '/password-update';
 
   api_register: string = environment.API_URL + '/authorization/register';
   api_login: string = environment.API_URL + '/authorization/login';

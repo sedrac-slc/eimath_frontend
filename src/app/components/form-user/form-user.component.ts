@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormValiedService } from 'src/app/services/form-valied.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LanguageService } from 'src/app/services/language.service';
 import { SelectOption } from 'src/app/classes/select.class';
 import { UserPeople } from 'src/app/model/userPeople.model';
+import { GuardService } from 'src/app/services/guard.service';
 
 @Component({
   selector: 'app-form-user',
@@ -21,7 +21,7 @@ export class FormUserComponent {
   @Output() onSubmit: EventEmitter<FormGroup>;
 
 
-  protected form: FormGroup;
+  @Input() form: FormGroup;
   protected genders: Array<SelectOption>;
 
   protected attribute = {
@@ -37,25 +37,27 @@ export class FormUserComponent {
 
   constructor(
     protected formBuilder: FormBuilder,
-    protected formValied: FormValiedService,
-    protected language: LanguageService
+    protected language: LanguageService,
+    private guardService: GuardService
   ){
-
-    this.form = this.formBuilder.group({
-      name: [null, [ Validators.required, Validators.pattern(/[a-zA-Z]+(\s[a-zA-Z])+/)] ],
-      username: [null, [ Validators.required, Validators.pattern(/[a-zA-Z]+/) ] ],
-      email: [null, [Validators.required, Validators.email]],
-      phone: [null, Validators.required],
-      birthday: [null, Validators.required],
-      gender: [null, Validators.required],
+    this.person = this.guardService.responseTokenUser().person;
+    this.form =  this.formBuilder.group({
+      name: [this.formIsAuth ? null : this.person.name, [ Validators.required, Validators.pattern(/[a-zA-Z]+(\s[a-zA-Z])+/)] ],
+      username: [this.formIsAuth ? null : this.person.username, [ Validators.required, Validators.pattern(/[a-zA-Z]+/) ] ],
+      email: [this.formIsAuth ? null : this.person.email, [Validators.required, Validators.email]],
+      phone: [this.formIsAuth ? null : this.person.phone, Validators.required],
+      birthDay: [this.formIsAuth ? null : this.person.birthDay, Validators.required],
+      gender: [this.formIsAuth ? null : this.person.gender, Validators.required],
       password: [null, [Validators.required, Validators.min(8) ] ],
       password_confirm: [null, [Validators.required, Validators.min(8) ] ]
     });
-
-    this.formValied.setFormGroup(this.form);
     this.genders = SelectOption.genders();
-    this.person = new UserPeople();
     this.onSubmit = new EventEmitter();
+  }
+
+  isValid(name: string): boolean{
+    const view = this.form.get(name);
+    return view?.valid ?? false;
   }
 
   onSubmitEmitter(evt: Event){
@@ -63,7 +65,7 @@ export class FormUserComponent {
     if(!this.visiblePassword){
       this.form.value.password = this.form.value.password_confirm = "undefined";
     }
-    console.log("emitindo");
+    console.log(this.form.value)
     this.onSubmit.emit(this.form);
   }
 

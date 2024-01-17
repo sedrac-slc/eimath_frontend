@@ -74,5 +74,7 @@ export default {
   sweet_operation_failed: "L'opération ne peut pas être effectuée",
   sweet_confirm_dialog: "Etes-vous sûr",
   sweet_confirm_delete: "Confirmer l'action de suppression",
-  sweet_confirm_invit: "Que vous souhaitez accepter l'invitation"
+  sweet_confirm_invit: "Que vous souhaitez accepter l'invitation",
+  digit_new_password: "Entrez le nouveau mot de passe",
+  digit_current_password : "Digita a senha nova"
 }

@@ -74,5 +74,7 @@ export default {
   sweet_operation_failed: "The operation cannot be performed",
   sweet_confirm_dialog: "Are you sure",
   sweet_confirm_delete: "Confirm delete action",
-  sweet_confirm_invit: "That you wish to accept the invitation"
+  sweet_confirm_invit: "That you wish to accept the invitation",
+  digit_new_password: "Enter the new password",
+  digit_current_password: "Enter the current password"
 }

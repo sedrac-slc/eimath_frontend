@@ -30,7 +30,7 @@ export class UserService {
   }
 
   public updateAuth(form: FormGroup) {
-    return this.httpClient.put<UserPeople>(this.link.api_users, JSON.stringify(form.value), {
+    return this.httpClient.put<UserPeople>(this.link.api_users, form.value, {
       headers: this.httpHeaders
     });
   }
