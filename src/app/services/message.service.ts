@@ -41,4 +41,11 @@ export class MessageService {
      });
   }
 
+  public save(message: Message): Observable<Message>{
+    return this.httpClient.post<Message>(`${this.link.api_messages}`,message,{
+       headers: this.httpHeaders
+     });
+  }
+
+
 }

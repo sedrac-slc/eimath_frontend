@@ -1,4 +1,32 @@
-<main class="content">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary border-bottom border-primary mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand bg-white text-dark rounded p-1 fs-sm" (click)="
+    group_type == constant.group_maneger
+    ? navigator.studyGroupFromEvent(link.study_group_maneger, $event)
+    : navigator.studyGroupFromEvent(link.study_group_participation, $event)
+  ">
+      <i class="bx bx-arrow-back"></i>
+      <span>{{ language.message().back }}</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-1 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" (click)="navigator.dashboardRedirect()">
+            <span class="bx bx-home"></span>
+            <span>{{ language.message().panel }}</span>
+          </a>
+        </li>
+      </ul>
+      <div class="d-flex">
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="content mt-1 bg-white">
   <div class="container p-0">
   <div class="card">
     <div class="row g-0">
@@ -15,7 +43,10 @@
         <a href="#" class="list-group-item list-group-item-action border-0 m-2" *ngFor="let item of memberPage.content">
           <!-- <div class="badge bg-success float-right">5</div> -->
           <div class="d-flex gap-1 justify-content-center align-items-center p-1">
-            <img src="https://bootdey.com/img/Content/avatar/avatar5.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
+            <img [src]="item.userPeople.image"  width="40" height="40" *ngIf="item.userPeople.image != null; else imageDefault;"/>
+            <ng-template #imageDefault>
+              <img [src]="image.profile_avatar"  width="40" height="40"/>
+            </ng-template>
             <div class="flex-grow-1 ml-3">
               <div>
                 <div class="fw-light fs-5">{{ item.userPeople.name }}</div>
@@ -33,12 +64,16 @@
         <div class="py-2 px-4 border-bottom d-none d-lg-block">
           <div class="d-flex align-items-center py-1">
             <div class="position-relative">
-              <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
+              <img [src]="person.image"  width="40" height="40" *ngIf="person.image != null; else imageDefaultPerson;"/>
+              <ng-template #imageDefaultPerson>
+                <img [src]="image.profile_avatar"  width="40" height="40"/>
+              </ng-template>
             </div>
             <div class="flex-grow-1 pl-3 gap-1">
               <strong>{{ person.name }}</strong>
               <div class="text-muted small"><em>{{ person.email }}</em></div>
             </div>
+            <!--
             <div class="d-flex gap-1">
               <button class="btn btn-primary btn-sm mr-1 px-3 text-white">
                 <i class='bx bx-phone-call bx-sm'></i>
@@ -47,143 +82,28 @@
                 <i class='bx bxs-video-recording bx-sm'></i>
               </button>
             </div>
+          -->
           </div>
         </div>
 
         <div class="position-relative">
-          <div class="chat-messages p-4">
-
-            <div class="chat-message-right pb-4">
+          <div class="chat-messages p-3 bg-light">
+            <div class="border rounded p-1" *ngFor="let item of messagePage.content;let i = index;" [ngClass]="{
+              'chat-message-right': i % 2 == 0,
+              'mb-4': i % 2 == 0,
+              'chat-message-left': i % 2 != 0,
+              'pb-4': i % 2 != 0
+            }">
               <div>
-                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+                <img [src]="item.userPeople.image"  width="40" height="40"  class="rounded-circle mr-1"  *ngIf="item.userPeople.image != null; else imageDefaultMessage;"/>
+                <ng-template #imageDefaultMessage>
+                  <img [src]="image.profile_avatar"  width="40" height="40"/>
+                </ng-template>
+                <div class="text-muted small text-nowrap mt-2">{{ dateUtil.formatHour(item.createdAt) }}</div>
               </div>
               <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                <div class="font-weight-bold mb-1">You</div>
-                Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
-              </div>
-            </div>
-
-            <div class="chat-message-left pb-4">
-              <div>
-                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
-                <div class="text-muted small text-nowrap mt-2">2:34 am</div>
-              </div>
-              <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
-                <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
-              </div>
-            </div>
-
-            <div class="chat-message-right mb-4">
-              <div>
-                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                <div class="text-muted small text-nowrap mt-2">2:35 am</div>
-              </div>
-              <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                <div class="font-weight-bold mb-1">You</div>
-                Cum ea graeci tractatos.
-              </div>
-            </div>
-
-            <div class="chat-message-left pb-4">
-              <div>
-                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
-                <div class="text-muted small text-nowrap mt-2">2:36 am</div>
-              </div>
-              <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
-                <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                Sed pulvinar, massa vitae interdum pulvinar, risus lectus porttitor magna, vitae commodo lectus mauris et velit.
-                Proin ultricies placerat imperdiet. Morbi varius quam ac venenatis tempus.
-              </div>
-            </div>
-
-            <div class="chat-message-left pb-4">
-              <div>
-                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
-                <div class="text-muted small text-nowrap mt-2">2:37 am</div>
-              </div>
-              <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
-                <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                Cras pulvinar, sapien id vehicula aliquet, diam velit elementum orci.
-              </div>
-            </div>
-
-            <div class="chat-message-right mb-4">
-              <div>
-                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                <div class="text-muted small text-nowrap mt-2">2:38 am</div>
-              </div>
-              <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                <div class="font-weight-bold mb-1">You</div>
-                Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
-              </div>
-            </div>
-
-            <div class="chat-message-left pb-4">
-              <div>
-                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
-                <div class="text-muted small text-nowrap mt-2">2:39 am</div>
-              </div>
-              <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
-                <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
-              </div>
-            </div>
-
-            <div class="chat-message-right mb-4">
-              <div>
-                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                <div class="text-muted small text-nowrap mt-2">2:40 am</div>
-              </div>
-              <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                <div class="font-weight-bold mb-1">You</div>
-                Cum ea graeci tractatos.
-              </div>
-            </div>
-
-            <div class="chat-message-right mb-4">
-              <div>
-                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                <div class="text-muted small text-nowrap mt-2">2:41 am</div>
-              </div>
-              <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                <div class="font-weight-bold mb-1">You</div>
-                Morbi finibus, lorem id placerat ullamcorper, nunc enim ultrices massa, id dignissim metus urna eget purus.
-              </div>
-            </div>
-
-            <div class="chat-message-left pb-4">
-              <div>
-                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
-                <div class="text-muted small text-nowrap mt-2">2:42 am</div>
-              </div>
-              <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
-                <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                Sed pulvinar, massa vitae interdum pulvinar, risus lectus porttitor magna, vitae commodo lectus mauris et velit.
-                Proin ultricies placerat imperdiet. Morbi varius quam ac venenatis tempus.
-              </div>
-            </div>
-
-            <div class="chat-message-right mb-4">
-              <div>
-                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                <div class="text-muted small text-nowrap mt-2">2:43 am</div>
-              </div>
-              <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                <div class="font-weight-bold mb-1">You</div>
-                Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
-              </div>
-            </div>
-
-            <div class="chat-message-left pb-4">
-              <div>
-                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
-                <div class="text-muted small text-nowrap mt-2">2:44 am</div>
-              </div>
-              <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
-                <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
+                <div class="font-weight-bold mb-1">{{ item.userPeople.name }}</div>
+                {{ item.text }}
               </div>
             </div>
 
@@ -191,9 +111,9 @@
         </div>
 
         <div class="flex-grow-0 py-3 px-4 border-top">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Type your message">
-            <button class="btn btn-primary">Send</button>
+          <div class="input-group border rounded">
+            <input type="text" class="form-control" placeholder="Type your message" [(ngModel)]="text">
+            <button class="btn btn-primary" (click)="saveMessage()">{{ language.message().send }}</button>
           </div>
         </div>
 

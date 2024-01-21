@@ -4,6 +4,7 @@ import { LanguageService } from 'src/app/services/language.service';
 import { SelectOption } from 'src/app/classes/select.class';
 import { UserPeople } from 'src/app/model/userPeople.model';
 import { GuardService } from 'src/app/services/guard.service';
+import { DateUtil } from 'src/app/utils/date.util';
 
 @Component({
   selector: 'app-form-user',
@@ -38,6 +39,7 @@ export class FormUserComponent {
   constructor(
     protected formBuilder: FormBuilder,
     protected language: LanguageService,
+    protected dateUtil: DateUtil,
     private guardService: GuardService
   ){
     this.person = this.guardService.responseTokenUser().person;
@@ -69,14 +71,7 @@ export class FormUserComponent {
     this.onSubmit.emit(this.form);
   }
 
-   format(date: any): string{
-    if(date == undefined) return '';
-    if(date.length == 3){
-      let formatDate = date[0]+"-"+(date[1] < 10 ? '0'+date[1] : date[1])+"-"+(date[2] < 10 ? '0'+date[2] : date[2]);
-      return formatDate;
-    }
-    return date.toLocaleString('default');
-  }
+
 
 
 }

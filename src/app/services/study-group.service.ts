@@ -50,6 +50,12 @@ export class StudyGroupService {
     });
   }
 
+  public findById(id: string): Observable<Group>{
+    return this.httpClient.get<Group>(`${this.link.api_study_group}/${id}`,{
+       headers: this.httpHeaders
+     });
+  }
+
   public save(form: FormGroup): Observable<Group>{
     return this.httpClient.post<Group>(`${this.link.api_study_group}`,form.value,{
        headers: this.httpHeaders

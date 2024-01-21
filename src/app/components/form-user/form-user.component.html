@@ -28,7 +28,7 @@
       <app-form-input icon="bxs-calendar-star" type="date" [id]="attribute.birthday"
         [falied]="!isValid(attribute.birthday)" [placeholder]="language.message().register_digit_birthday"
         [label]="language.message().register_birthday" (onChangeValue)="this.form.patchValue({ birthDay: $event })"
-        [value]="format(person.birthDay)"
+        [value]="dateUtil.format(person.birthDay)"
         [disabled]="disabledInputs" />
     </div>
     <div class="col-md-6">

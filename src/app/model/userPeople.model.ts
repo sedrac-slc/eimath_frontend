@@ -14,4 +14,11 @@ export class UserPeople {
   accountNonLocked: boolean = false;
   credentialsNonExpired: boolean = false;
   accountNonExpired: boolean = false;
+
+  static of(id: string): UserPeople{
+    let userPeople = new UserPeople();
+    userPeople.id = id;
+    return userPeople;
+  }
+
 }
