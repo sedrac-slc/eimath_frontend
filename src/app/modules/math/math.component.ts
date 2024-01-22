@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ResponseTokenUser } from 'src/app/model/responseTokenUser.model';
 import { GuardService } from 'src/app/services/guard.service';
+import { LanguageService } from 'src/app/services/language.service';
 import { SweetALertService } from 'src/app/services/sweet-alert.service';
 import { UserService } from 'src/app/services/user.service';
 import { ContentIdUtil } from 'src/app/utils/content-ids.util';
@@ -17,6 +18,7 @@ export class MathComponent {
 
   constructor(
     protected contentId: ContentIdUtil,
+    protected language: LanguageService,
     protected guardService: GuardService,
     protected userService: UserService,
     protected sweetAlert: SweetALertService,
@@ -36,6 +38,11 @@ export class MathComponent {
         this.sweetAlert.operationFalied();
       }
     })
+
+  }
+
+  updatePhoto(event: Event){
+    event.preventDefault();
 
   }
 

@@ -76,5 +76,7 @@ export default {
   sweet_confirm_delete: "Confirm delete action",
   sweet_confirm_invit: "That you wish to accept the invitation",
   digit_new_password: "Enter the new password",
-  digit_current_password: "Enter the current password"
+  digit_current_password: "Enter the current password",
+  alter_photo_perfil: "Change profile photo",
+  choose_photo: "Choose the image"
 }

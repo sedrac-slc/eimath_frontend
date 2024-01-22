@@ -76,5 +76,7 @@ export default {
   sweet_confirm_delete: "Confirmar acción de eliminación",
   sweet_confirm_invit: "Que deseas aceptar la invitación",
   digit_new_password: "Ingrese la nueva contraseña",
-  digit_current_password: "Digita a senha nova"
+  digit_current_password: "Ingrese la nueva contraseña",
+  alter_photo_perfil: "Cambiar foto de perfil",
+  choose_photo: "Elige la imagen"
 }
