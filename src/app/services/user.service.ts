@@ -19,8 +19,8 @@ export class UserService {
     private guardService: GuardService
   ) {
     this.httpHeaders = this.guardService.confirmedPerson()
-      ? new HttpHeaders({ 'Content-Type': 'application/json',  Authorization: `Bearer ${this.guardService.responseTokenUser().token}`
-     }) : new HttpHeaders({ 'Content-Type': 'application/json'});
+      ? new HttpHeaders({ 'Content-Type': 'application/json',  Authorization: `Bearer ${this.guardService.responseTokenUser().token}`})
+      : new HttpHeaders({ 'Content-Type': 'application/json'});
   }
 
   public registerAuth(form: FormGroup) {
@@ -38,6 +38,12 @@ export class UserService {
   public updatePassowrdAuth(form: FormGroup) {
     return this.httpClient.put<void>(this.link.api_users_password_update, JSON.stringify(form.value),{
       headers: this.httpHeaders
+    });
+  }
+
+  public updateImagemAuth(form: FormGroup) {
+    return this.httpClient.post<void>(this.link.api_user_image, form.value,{
+      headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data',  Authorization: `Bearer ${this.guardService.responseTokenUser().token}`})
     });
   }
 

@@ -16,14 +16,20 @@ export class MathComponent {
   disabledInputs: boolean = true;
   responseTokenUser: ResponseTokenUser;
 
+  protected formGroup: FormGroup
+
   constructor(
     protected contentId: ContentIdUtil,
     protected language: LanguageService,
     protected guardService: GuardService,
     protected userService: UserService,
     protected sweetAlert: SweetALertService,
+    private formBuilder: FormBuilder,
   ){
     this.responseTokenUser = this.guardService.responseTokenUser();
+    this.formGroup = this.formBuilder.group({
+      file: [null,  [ Validators.required ] ],
+    });
   }
 
   updateInformation(form: FormGroup){
@@ -43,7 +49,16 @@ export class MathComponent {
 
   updatePhoto(event: Event){
     event.preventDefault();
-
+    this.userService.updateImagemAuth(this.formGroup).subscribe({
+      next: (resp) => {
+        this.sweetAlert.operationSuccess()
+        console.log(resp);
+      },
+      error: (err) => {
+        this.sweetAlert.operationFalied()
+        console.error(err);
+      }
+    });
   }
 
 

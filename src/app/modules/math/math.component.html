@@ -2,7 +2,13 @@
   <div [id]="contentId.dashboard_content">
     <section class="row rounded p-3">
       <div class="col-md-2 text-center" *ngIf="guardService.confirmedPerson()">
-        <i class="bx bx-user bx-lg bg-white rounded-pill border p-3 w-max-content photo-image"></i>
+        <div>
+          <i class="bx bx-user bx-lg bg-white rounded-pill border p-3 w-max-content photo-image"></i>
+          <div type="button" class="text-primary p-0 m-0" data-bs-toggle="modal" data-bs-target="#fotoPerfilModel">
+            <i class='bx bx-photo-album'></i>
+            <span>alterar foto</span>
+          </div>
+        </div>
       </div>
       <div class="col-md-10 p-2">
         <div class="h6" *ngIf="guardService.confirmedPerson()">
@@ -84,10 +90,6 @@
         <div class="p-3 bg-white rounded border">
           <app-form-user [person]="responseTokenUser.person" [visiblePassword]="false" [disabledInputs]="disabledInputs"
             [formIsAuth]="true" (onSubmit)="updateInformation($event)" />
-          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#fotoPerfilModel">
-            <i class='bx bx-photo-album'></i>
-            <span>Foto de perfil</span>
-          </button>
         </div>
       </div>
       <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
@@ -101,7 +103,7 @@
 
   <div class="modal fade" id="fotoPerfilModel" tabindex="-1" aria-labelledby="fotoPerfilModelLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <form class="modal-content" (ngSubmit)="updatePhoto($event)">
+      <form class="modal-content" [formGroup]="formGroup" (ngSubmit)="updatePhoto($event)">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="fotoPerfilModelLabel">{{ language.message().alter_photo_perfil }}</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -109,7 +111,7 @@
         <div class="modal-body">
           <div class="">
             <label class="form-label" for="photo">{{ language.message().choose_photo }}</label>
-            <input type="file" class="form-control border" name="file" id="photo">
+            <input type="file" class="form-control border" name="file" formControlName="file" id="photo">
           </div>
         </div>
         <div class="modal-footer">
