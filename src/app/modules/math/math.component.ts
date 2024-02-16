@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ResponseTokenUser } from 'src/app/model/responseTokenUser.model';
 import { GuardService } from 'src/app/services/guard.service';
 import { LanguageService } from 'src/app/services/language.service';
@@ -16,7 +16,9 @@ export class MathComponent {
   disabledInputs: boolean = true;
   responseTokenUser: ResponseTokenUser;
 
-  protected formGroup: FormGroup
+  protected file: File | null;
+
+  protected formGroup: FormGroup;
 
   constructor(
     protected contentId: ContentIdUtil,
@@ -25,19 +27,30 @@ export class MathComponent {
     protected userService: UserService,
     protected sweetAlert: SweetALertService,
     private formBuilder: FormBuilder,
-  ){
+  ) {
     this.responseTokenUser = this.guardService.responseTokenUser();
     this.formGroup = this.formBuilder.group({
-      file: [null,  [ Validators.required ] ],
+      file: [null, [Validators.required, this.validateFileType]],
     });
+    this.file = null;
   }
 
-  updateInformation(form: FormGroup){
+  validateFileType(control: FormControl) {
+    const file = control.value;
+    if (file && !(file instanceof File)) {
+      return {
+        invalidFileType: true,
+      };
+    }
+    return null;
+  }
+
+  updateInformation(form: FormGroup) {
     this.userService.updateAuth(form).subscribe({
       next: (resp) => {
-       let responseTokenUser = this.guardService.responseTokenUser();
-       responseTokenUser.person = resp;
-       this.guardService.savePersonInLocalStorage(responseTokenUser);
+        let responseTokenUser = this.guardService.responseTokenUser();
+        responseTokenUser.person = resp;
+        this.guardService.savePersonInLocalStorage(responseTokenUser);
       },
       error: (e) => {
         console.error(e)
@@ -47,20 +60,24 @@ export class MathComponent {
 
   }
 
-  updatePhoto(event: Event){
-    event.preventDefault();
-    this.userService.updateImagemAuth(this.formGroup).subscribe({
-      next: (resp) => {
-        this.sweetAlert.operationSuccess()
-        console.log(resp);
-      },
-      error: (err) => {
-        this.sweetAlert.operationFalied()
-        console.error(err);
-      }
-    });
+  onFilechange(event: any) {
+    console.log(event.target.files[0])
+    this.file = event.target.files[0];
   }
 
+  updatePhoto(event: Event) {
+    event.preventDefault();
+    if (this.file != null) {
+      this.userService.updateImagemAuth(this.file).subscribe({
+        next: (resp) => {
+          this.sweetAlert.operationSuccess()
+        },
+        error: (err) => {
+          this.sweetAlert.operationFalied()
+        }
+      });
+    }
+  }
 
 
 }

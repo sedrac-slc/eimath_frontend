@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ResponseTokenUser } from '../model/responseTokenUser.model';
@@ -41,10 +41,13 @@ export class UserService {
     });
   }
 
-  public updateImagemAuth(form: FormGroup) {
-    return this.httpClient.post<void>(this.link.api_user_image, form.value,{
-      headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data',  Authorization: `Bearer ${this.guardService.responseTokenUser().token}`})
+  public updateImagemAuth(file: File) {
+    const formData = new FormData();
+    formData.append('file', file, file.name)
+    const httpRequest = new HttpRequest("POST", this.link.api_user_image, formData, {
+      headers: new HttpHeaders({'Content-Type': 'multipart/form-data'})
     });
+    return this.httpClient.request(httpRequest);
   }
 
 }

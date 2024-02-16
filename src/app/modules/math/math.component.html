@@ -103,15 +103,15 @@
 
   <div class="modal fade" id="fotoPerfilModel" tabindex="-1" aria-labelledby="fotoPerfilModelLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <form class="modal-content" [formGroup]="formGroup" (ngSubmit)="updatePhoto($event)">
+      <form class="modal-content" [formGroup]="formGroup" (ngSubmit)="updatePhoto($event)" method="post" enctype="multipart/form-data">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="fotoPerfilModelLabel">{{ language.message().alter_photo_perfil }}</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="">
-            <label class="form-label" for="photo">{{ language.message().choose_photo }}</label>
-            <input type="file" class="form-control border" name="file" formControlName="file" id="photo">
+            <label class="form-label" for="file">{{ language.message().choose_photo }}</label>
+            <input type="file" class="form-control border" name="file" formControlName="file" id="file" (change)="this.onFilechange($event)"/>
           </div>
         </div>
         <div class="modal-footer">
