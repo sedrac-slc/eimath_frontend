@@ -114,8 +114,8 @@ export class GroupsManagerComponent {
   }
 
   changeGroupCreate() {
-    this.action = this.action_create;
-    this.initFormGroup(null, null, this.person.id);
+    //this.action = this.action_create;
+    //this.initFormGroup(null, null, this.person.id);
   }
 
   changeGroupEdit(group: Group) {

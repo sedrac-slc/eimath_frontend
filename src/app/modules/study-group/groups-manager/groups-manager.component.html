@@ -1,8 +1,7 @@
 <app-dashboard>
   <div [id]="contentId.dashboard_content">
 
-    <button class="btn btn-outline-success mt-3 mb-1" type="button" data-bs-toggle="modal"
-      data-bs-target="#staticBackdrop" (click)="changeGroupCreate()">
+    <button class="btn btn-outline-success mt-3 mb-1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="changeGroupCreate()">
       <i class="bx bx-plus"></i>
       <span>{{ language.message().group_manager_add }}</span>
     </button>
@@ -16,8 +15,7 @@
       />
     </div>
 
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <form [formGroup]="form" (ngSubmit)="submit($event)" class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
