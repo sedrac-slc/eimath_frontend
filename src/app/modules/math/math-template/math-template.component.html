@@ -66,6 +66,7 @@
     </ul>
 
     <div class="tab-content bg-white" id="pills-tabContent">
+
       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
         tabindex="0">
         <app-result-not-found *ngIf=" mathResult.steps.length == 0 else resultYes;"/>
@@ -80,12 +81,14 @@
           </div>
         </ng-template>
       </div>
+
       <div class="tab-pane fade p-3" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0"
         *ngIf="infoRole">
         <app-arithmetic-role *ngIf="constante.topic_arithmetic == topic" />
         <app-equation-role *ngIf="constante.topic_equation == topic" />
         <app-radical-role *ngIf="constante.topic_radical == topic" />
       </div>
+
       <div class="tab-pane fade p-3" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0"
         *ngIf="infoExemple">
         <app-arithmetic-exemple (onCopyForInput)="changeExpression($event)"
@@ -93,6 +96,7 @@
         <app-equation-exemple (onCopyForInput)="changeExpression($event)" *ngIf="constante.topic_equation == topic" />
         <app-radical-exemple (onCopyForInput)="changeExpression($event)" *ngIf="constante.topic_radical == topic" />
       </div>
+
     </div>
 
   </div>

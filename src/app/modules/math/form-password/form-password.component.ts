@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormValiedService } from 'src/app/services/form-valied.service';
 import { LanguageService } from 'src/app/services/language.service';
@@ -8,7 +8,8 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-form-password',
   templateUrl: './form-password.component.html',
-  styleUrls: ['./form-password.component.css']
+  styleUrls: ['./form-password.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class FormPasswordComponent {
   protected form: FormGroup;

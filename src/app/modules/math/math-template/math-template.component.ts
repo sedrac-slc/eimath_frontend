@@ -63,12 +63,26 @@ export class MathTemplateComponent {
     this.httpClient.post<MathResponse>(this.url, this.mathForm.value, httpOptions).subscribe({
       next: (resp) => {
         this.mathResult = resp
+        this.openPanel()
       },
       error: (_) =>{
         this.sweetAlert.validateFalied();
       }
     })
 
+  }
+
+  private openPanel(){
+    const tabPanel = document.querySelectorAll('.tab-pane');
+    tabPanel.forEach(tab => {
+      if("pills-home" == tab.id){
+        if(!tab.classList.contains('show')) tab.classList.add('show')
+        if(!tab.classList.contains('active')) tab.classList.add('active')
+      }else{
+        if(tab.classList.contains('show')) tab.classList.remove('show')
+        if(tab.classList.contains('active')) tab.classList.remove('active')
+      }
+    })
   }
 
 }

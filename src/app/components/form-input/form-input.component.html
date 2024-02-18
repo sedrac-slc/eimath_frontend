@@ -5,7 +5,6 @@
   </label>
   <input class="form-control" [class.is-invalid] = "falied"
       [id]="id" [type]="type" [placeholder]="placeholder" [name]="id" [disabled]="disabled"
-      [(ngModel)]="value" [value]="value"
-    (change)="onChangeValueEmitter(value)"
+      [(ngModel)]="value" [value]="value" (change)="onChangeValueEmitter(value)"
    />
 </div>

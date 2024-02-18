@@ -6,7 +6,7 @@
 .fraction {
   display: flex;
   flex-direction: column;
-  width: min-content;
+  width: max-content;
   position: relative;
   justify-content: center;
   align-items: center;

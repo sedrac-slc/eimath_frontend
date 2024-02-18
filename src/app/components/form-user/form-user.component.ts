@@ -13,11 +13,11 @@ import { DateUtil } from 'src/app/utils/date.util';
 })
 export class FormUserComponent {
 
+  @Input() person: UserPeople;
+
+  @Input() formIsAuth: boolean = false;
   @Input() disabledInputs: boolean = false;
   @Input() visiblePassword: boolean = true;
-  @Input() person: UserPeople;
-  @Input() formIsAuth: boolean = false;
-
 
   @Output() onSubmit: EventEmitter<FormGroup>;
 
@@ -42,19 +42,26 @@ export class FormUserComponent {
     protected dateUtil: DateUtil,
     private guardService: GuardService
   ){
-    this.person = this.guardService.responseTokenUser().person;
+    this.person = this.initPerson();
     this.form =  this.formBuilder.group({
-      name: [this.formIsAuth ? null : this.person.name, [ Validators.required, Validators.pattern(/[a-zA-Z]+(\s[a-zA-Z])+/)] ],
-      username: [this.formIsAuth ? null : this.person.username, [ Validators.required, Validators.pattern(/[a-zA-Z]+/) ] ],
-      email: [this.formIsAuth ? null : this.person.email, [Validators.required, Validators.email]],
-      phone: [this.formIsAuth ? null : this.person.phone, Validators.required],
-      birthDay: [this.formIsAuth ? null : this.person.birthDay, Validators.required],
-      gender: [this.formIsAuth ? null : this.person.gender, Validators.required],
+      name: [this.formIsAuth ? null : this.person?.name, [ Validators.required, Validators.pattern(/[a-zA-Z]+(\s[a-zA-Z])+/)] ],
+      username: [this.formIsAuth ? null : this.person?.username, [ Validators.required, Validators.pattern(/[a-zA-Z]+/) ] ],
+      email: [this.formIsAuth ? null : this.person?.email, [Validators.required, Validators.email]],
+      phone: [this.formIsAuth ? null : this.person?.phone, Validators.required],
+      birthDay: [this.formIsAuth ? null : this.person?.birthDay, Validators.required],
+      gender: [this.formIsAuth ? null : this.person?.gender, Validators.required],
       password: [null, [Validators.required, Validators.min(8) ] ],
       password_confirm: [null, [Validators.required, Validators.min(8) ] ]
     });
     this.genders = SelectOption.genders();
     this.onSubmit = new EventEmitter();
+  }
+
+  private initPerson(){
+    if(this.guardService.existPersonInLocalStorage()) return this.guardService.responseTokenUser().person;
+    let person = new UserPeople();
+    person.name = person.email = person.username = person.phone = person.gender = "";
+    return person;
   }
 
   isValid(name: string): boolean{
@@ -67,7 +74,6 @@ export class FormUserComponent {
     if(!this.visiblePassword){
       this.form.value.password = this.form.value.password_confirm = "undefined";
     }
-    console.log(this.form.value)
     this.onSubmit.emit(this.form);
   }
 

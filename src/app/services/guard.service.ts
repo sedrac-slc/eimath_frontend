@@ -20,7 +20,7 @@ export class GuardService {
   }
 
   existPersonInLocalStorage(): boolean{
-    return localStorage.getItem(GuardService.PERSON) !== undefined;
+    return localStorage.getItem(GuardService.PERSON) !== null;
   }
 
   confirmedPerson(): boolean{

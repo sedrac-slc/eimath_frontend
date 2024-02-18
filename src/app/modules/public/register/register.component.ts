@@ -34,18 +34,17 @@ export class RegisterComponent {
   }
 
   private createAccount(form: FormGroup){
+
     this.userService.registerAuth(form).subscribe({
       next: (resp) => {
         this.guardService.savePersonInLocalStorage(resp);
+        this.guardService.redirectDashboard();
       },
       error: (_) => {
         this.sweeAlert.createAccountFalied();
         this.guardService.logaut();
-      }
+      },
     });
-
-    if(this.guardService.confirmedPerson())
-      this.guardService.redirectDashboard();
 
   }
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ResponseTokenUser } from 'src/app/model/responseTokenUser.model';
 import { GuardService } from 'src/app/services/guard.service';
@@ -10,7 +10,8 @@ import { ContentIdUtil } from 'src/app/utils/content-ids.util';
 @Component({
   selector: 'app-math',
   templateUrl: './math.component.html',
-  styleUrls: ['./math.component.css']
+  styleUrls: ['./math.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MathComponent {
   disabledInputs: boolean = true;
