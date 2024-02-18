@@ -34,6 +34,10 @@ export class MathExempleComponent {
     try {
       let n = this.exemplos.findIndex(it => it.text == text);
       this.onCopyForInput.emit(this.exemplos[n]);
+      window.scroll({
+        top: 0,
+        behavior: 'smooth',
+      });
     } catch (_) {
       this.sweetAlert.copyForInputFalied();
     }

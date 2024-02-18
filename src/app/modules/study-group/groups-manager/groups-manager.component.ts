@@ -154,7 +154,10 @@ export class GroupsManagerComponent {
           let convit = new Convit(email, group, person);
           if (this.validarEmail(email)) {
             this.convitService.save(convit).subscribe({
-              next: (resp) => convit = resp,
+              next: (resp) => {
+                convit = resp;
+                Swal.fire("Enviado com successo")
+              },
               error: (_) => Swal.fire({ html: this.language.message().sweet_operation_failed, icon: 'error' })
             })
           } else {

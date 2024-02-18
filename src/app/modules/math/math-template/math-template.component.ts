@@ -75,12 +75,15 @@ export class MathTemplateComponent {
   private openPanel(){
     const tabPanel = document.querySelectorAll('.tab-pane');
     tabPanel.forEach(tab => {
+      const liTab = document.querySelector("#"+tab.getAttribute("aria-labelledby"));
       if("pills-home" == tab.id){
-        if(!tab.classList.contains('show')) tab.classList.add('show')
-        if(!tab.classList.contains('active')) tab.classList.add('active')
+        if(!tab.classList.contains('show')) tab.classList.add('show');
+        if(!tab.classList.contains('active')) tab.classList.add('active');
+        if(liTab && !liTab.classList.contains('active')) liTab.classList.add('active');
       }else{
         if(tab.classList.contains('show')) tab.classList.remove('show')
         if(tab.classList.contains('active')) tab.classList.remove('active')
+        if(liTab && liTab.classList.contains('active')) liTab.classList.remove('active');
       }
     })
   }
