@@ -1,6 +1,6 @@
 <div class="wrapper d-flex align-items-stretch">
 
-  <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
+  <div class="offcanvas offcanvas-start w-25" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
     aria-labelledby="staticBackdropLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="staticBackdropLabel">Menu</h5>
@@ -21,7 +21,7 @@
               <span>{{ language.message().dashboard_home_page }}</span>
             </a>
           </li>
-          <li class="mt-2">
+          <li class="mt-4">
             <a href="#" (click)="toogleDropDown('pageSubmenu'); $event.preventDefault()" data-toggle="collapse" aria-expanded="false"
               class="dropdown-toggle">
               <i class='bx bx-food-menu mr-3'></i>
@@ -48,7 +48,7 @@
               </li>
             </ul>
           </li>
-          <li class="mt-2" *ngIf="guardaService.confirmedPerson()">
+          <li class="mt-4" *ngIf="guardaService.confirmedPerson()">
             <a href="#" (click)="toogleDropDown('studyGroupMenu'); $event.preventDefault()" data-toggle="collapse" aria-expanded="false"
               class="dropdown-toggle">
               <i class='bx bx-book mr-3'></i>
@@ -69,7 +69,7 @@
               </li>
             </ul>
           </li>
-          <li class="mt-2" *ngIf="guardaService.confirmedPerson()">
+          <li class="mt-4" *ngIf="guardaService.confirmedPerson()">
             <a (click)="navigator.fromEvent(link.convits,$event)">
               <i class="bx bx-envelope mr-3"></i>
               <span>{{ language.message().dashboard_convit }}</span>

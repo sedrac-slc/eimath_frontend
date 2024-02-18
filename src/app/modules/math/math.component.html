@@ -102,19 +102,11 @@
         *ngIf="guardService.confirmedPerson()">
           <app-form-user [person]="responseTokenUser.person" [visiblePassword]="false" [disabledInputs]="disabledInputs"
             [formIsAuth]="true" (onSubmit)="updateInformation($event)" />
-
-            <div class="opacity-0">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi distinctio quam dignissimos qui corrupti sed! Doloribus dolorum quibusdam quia natus quo totam nulla! Consequuntur voluptas vitae dolores, aliquid nulla suscipit!
-            </div>
       </div>
 
       <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
         *ngIf="guardService.confirmedPerson()">
           <app-form-password />
-
-          <div class="opacity-0">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi distinctio quam dignissimos qui corrupti sed! Doloribus dolorum quibusdam quia natus quo totam nulla! Consequuntur voluptas vitae dolores, aliquid nulla suscipit!
-          </div>
       </div>
 
     </section>
