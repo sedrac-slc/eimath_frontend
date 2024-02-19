@@ -19,6 +19,7 @@ export default {
   edit: "Modificare",
   delete: "Eliminare",
   create: "Creare",
+  logaut: "Uscire",
   register_title: "Registrati",
   register_name: "Nome",
   register_digit_name: "Inserisci nome",
@@ -80,7 +81,7 @@ export default {
   sweet_confirm_delete: "Conferma l'azione di eliminazione",
   sweet_confirm_invit: "Che desideri accettare l'invito",
   digit_new_password: "Inserisci la nuova password",
-  digit_current_password: "Inserisci la nuova password",
+  digit_current_password: "Inserisci la password attuale",
   alter_photo_perfil: "Cambia foto del profilo",
   choose_photo: "Scegli l'immagine"
 }

@@ -6,6 +6,7 @@ import { LanguageService } from 'src/app/services/language.service';
 import { SweetALertService } from 'src/app/services/sweet-alert.service';
 import { UserService } from 'src/app/services/user.service';
 import { ContentIdUtil } from 'src/app/utils/content-ids.util';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-math',
@@ -62,23 +63,28 @@ export class MathComponent {
   }
 
   onFilechange(event: any) {
-    console.log(event.target.files[0])
     this.file = event.target.files[0];
   }
 
   updatePhoto(event: Event) {
     event.preventDefault();
+
     if (this.file != null) {
-      this.userService.updateImagemAuth(this.file).subscribe({
-        next: (resp) => {
-          this.sweetAlert.operationSuccess()
-        },
-        error: (err) => {
-          this.sweetAlert.operationFalied()
-        }
+      let responseTokenUser = this.guardService.responseTokenUser();
+      this.userService.updateImagemAxios(this.file).then(function (response) {
+        responseTokenUser.person = response.data;
+        let json =  JSON.stringify(responseTokenUser);
+        localStorage.setItem(GuardService.PERSON, json);
+      }).catch(function (error) {
+        Swal.fire("Não alterado");
       });
+
     }
+
   }
 
+  imgUser(): string{
+    return this.guardService.responseTokenUser().person.image;
+  }
 
 }

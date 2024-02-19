@@ -1,4 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { UserPeople } from 'src/app/model/userPeople.model';
 import { GuardService } from 'src/app/services/guard.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { NavigatorService } from 'src/app/services/navigator.service';
@@ -14,6 +15,9 @@ import { LinkUtil } from 'src/app/utils/link.util';
 })
 export class DashboardComponent {
   @Input() back: string = "";
+  @Input() detailsUser: boolean = true;
+
+  person: UserPeople;
 
   constructor(
     protected contentId: ContentIdUtil,
@@ -24,6 +28,7 @@ export class DashboardComponent {
     protected guardaService: GuardService
   ){
     this.fullHeight();
+    this.person = this.guardaService.responseTokenUser().person;
   }
 
   private changeHeight(cls: string){

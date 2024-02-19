@@ -1,5 +1,5 @@
 :root{
-  --photo-dimension: 100px;
+  --photo-dimension: 80px;
 }
 
 .photo-image{
@@ -30,8 +30,4 @@
   position: absolute;
   right: 2%;
   top: 0%;
-}
-
-.opacity-0{
-  opacity: 0;
 }

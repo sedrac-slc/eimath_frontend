@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormValiedService } from 'src/app/services/form-valied.service';
+import { GuardService } from 'src/app/services/guard.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { SweetALertService } from 'src/app/services/sweet-alert.service';
 import { UserService } from 'src/app/services/user.service';
@@ -27,13 +28,15 @@ export class FormPasswordComponent {
     protected formValied: FormValiedService,
     protected userService: UserService,
     protected sweetAlert: SweetALertService,
+    protected guardService: GuardService,
     protected language: LanguageService,
   ){
     this.form = this.formBuilder.group({
       passwordNew: [null, Validators.required],
-      passwordConfirmNew: [null, Validators.required],
       passwordOld: [null, Validators.required],
-      passwordConfirmOld: [null, Validators.required]
+      passwordConfirmNew: [null, Validators.required],
+      passwordConfirmOld: [null, Validators.required],
+      user: [this.guardService.responseTokenUser().person, Validators.required],
     });
     formValied.setFormGroup(this.form);
   }

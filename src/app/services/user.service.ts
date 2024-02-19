@@ -5,6 +5,7 @@ import { ResponseTokenUser } from '../model/responseTokenUser.model';
 import { LinkUtil } from '../utils/link.util';
 import { UserPeople } from '../model/userPeople.model';
 import { GuardService } from './guard.service';
+import axios from 'axios';
 
 @Injectable({
   providedIn: 'root'
@@ -41,13 +42,14 @@ export class UserService {
     });
   }
 
-  public updateImagemAuth(file: File) {
+  public updateImagemAxios(file: File) {
     const formData = new FormData();
-    formData.append('file', file, file.name)
-    const httpRequest = new HttpRequest("POST", this.link.api_user_image, formData, {
-      headers: new HttpHeaders({'Content-Type': 'multipart/form-data'})
+    formData.append('file', file, file.name);
+    formData.append('user',this.guardService.responseTokenUser().person.id);
+    const httpRequest = axios.put(this.link.api_user_image, formData, {
+      headers: {'Content-Type': 'multipart/form-data', Authorization: `Bearer ${this.guardService.responseTokenUser().token}` }
     });
-    return this.httpClient.request(httpRequest);
+    return httpRequest;
   }
 
 }

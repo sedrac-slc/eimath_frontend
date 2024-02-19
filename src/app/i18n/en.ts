@@ -19,6 +19,7 @@ export default {
   edit: "Edit",
   delete: "Delete",
   create: "Create",
+  logaut: "Logaut",
   register_title: "Register",
   register_name: "Name",
   register_digit_name: "Enter name",

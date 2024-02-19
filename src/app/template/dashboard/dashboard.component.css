@@ -1,7 +1,41 @@
-#logautBtn{
+:root{
+  --dem: 50px;
+}
+
+body{
+  overflow: auto;
+}
+
+.photo-perfil{
+  width: var(--dem);
+  height: var(--dem);
+  border-radius: 50%;
+}
+
+.d-actions{
+  display: flex;
+  align-items: center;
+  gap: 1;
+}
+
+.list-style-none{
+  list-style: none;
+}
+
+#float-right-panel{
   position: absolute;
   right: 1rem;
   top: 0.7rem;
+}
+
+.position-relative{
+  position: relative;
+}
+
+#float-right-panel .dropdown-toggle::after,
+#float-right-panel .dropdown-toggle::before{
+  content: none;
+  color: none;
 }
 
 #menuNav{

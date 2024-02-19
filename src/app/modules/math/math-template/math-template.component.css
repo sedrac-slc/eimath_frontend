@@ -1,11 +1,3 @@
-#math_template_breadcrumb{
-  display: block;
-}
-
-#math_template_info_role{
-  display: block;
-}
-
-#math_template_info_exemple{
-  display: block;
+body{
+  overflow: auto;
 }

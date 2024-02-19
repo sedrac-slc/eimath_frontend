@@ -21,9 +21,21 @@
               <span>{{ language.message().dashboard_home_page }}</span>
             </a>
           </li>
+          <li class="mt-4" *ngIf="!guardaService.confirmedPerson()">
+            <a (click)="navigator.fromEvent(link.public_login,$event)">
+              <i class='bx bx-log-in'></i>
+              <span>{{ language.message().login }}</span>
+            </a>
+          </li>
+          <li class="mt-4" *ngIf="!guardaService.confirmedPerson()">
+            <a (click)="navigator.fromEvent(link.public_register,$event)">
+              <i class='bx bx-file'></i>
+              <span>{{ language.message().register }}</span>
+            </a>
+          </li>
           <li class="mt-4">
-            <a href="#" (click)="toogleDropDown('pageSubmenu'); $event.preventDefault()" data-toggle="collapse" aria-expanded="false"
-              class="dropdown-toggle">
+            <a href="#" (click)="toogleDropDown('pageSubmenu'); $event.preventDefault()" data-toggle="collapse"
+              aria-expanded="false" class="dropdown-toggle">
               <i class='bx bx-food-menu mr-3'></i>
               <span>{{ language.message().dashboard_topic }}</span>
             </a>
@@ -49,8 +61,8 @@
             </ul>
           </li>
           <li class="mt-4" *ngIf="guardaService.confirmedPerson()">
-            <a href="#" (click)="toogleDropDown('studyGroupMenu'); $event.preventDefault()" data-toggle="collapse" aria-expanded="false"
-              class="dropdown-toggle">
+            <a href="#" (click)="toogleDropDown('studyGroupMenu'); $event.preventDefault()" data-toggle="collapse"
+              aria-expanded="false" class="dropdown-toggle">
               <i class='bx bx-book mr-3'></i>
               <span>{{ language.message().dashboard_study_group }}</span>
             </a>
@@ -83,21 +95,48 @@
   </div>
 
   <button class="btn btn-primary" type="button" id="menuNav" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
-  aria-controls="staticBackdrop">
-  <i class='bx bx-s bx-menu text-white'></i>
-</button>
-
-  <button type="button" id="logautBtn" class="bg-danger border rounded-pill"
-    (click)="guardaService.logaut(); navigator.loginRedirect();">
-    <i class='bx bx-log-out bx-md text-white'></i>
+    aria-controls="staticBackdrop">
+    <i class='bx bx-s bx-menu text-white'></i>
   </button>
 
-  <div id="content" class="p-4 p-md-5 pt-5">
-    <div class="container">
-      <ng-content [select]="'#'+contentId.dashboard_content" />
-    </div>
+  <div *ngIf="guardaService.confirmedPerson()" class="" id="float-right-panel">
+    <ul class="list-style-none">
+      <li class="nav-item dropdown p-0 m-0">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img [src]="person.image" alt="photo-perfil" class="photo-perfil">
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item" href="#">
+              <span>Nome: </span>
+              <span>{{ person.name }}</span>
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">
+              <span>Email: </span>
+              <span>{{ person.email }}</span>
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li class="position-relative p-1">
+            <button type="button" class="btn btn-outline-danger m-auto w-100"
+              (click)="guardaService.logaut(); navigator.loginRedirect();">
+              <i class='bx bx-log-out'></i>
+              <span>{{ language.message().logaut }}</span>
+            </button>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </div>
 
+</div>
 
-
+<div id="content" class="p-4 p-md-5 pt-5">
+  <div class="container">
+    <ng-content [select]="'#'+contentId.dashboard_content" />
+  </div>
 </div>

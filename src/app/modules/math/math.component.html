@@ -4,7 +4,10 @@
 
     <section class="row rounded p-3">
       <div class="col-md-2 text-center" *ngIf="guardService.confirmedPerson()">
-          <i class="bx bx-user bx-lg bg-white rounded-pill border p-3 w-max-content photo-image"></i>
+          <a [href]="imgUser()" *ngIf="imgUser() != null" target="_blank">
+              <img [src]="imgUser()" alt="photo perfil"   class="rounded-circle photo-image" />
+          </a>
+          <i class="bx bx-user bx-lg bg-white rounded-pill border p-3 w-max-content photo-image" *ngIf="imgUser() == null"></i>
           <div type="button" class="text-primary p-0 m-0" data-bs-toggle="modal" data-bs-target="#fotoPerfilModel">
             <i class='bx bx-photo-album'></i>
             <span>alterar foto</span>
@@ -77,7 +80,7 @@
             </div>
             <div>
               <span class="subtopico">O que o eimath tem para oferecer:</span>
-              <ul type="none">
+              <ul class="list-style-none">
                 <li>
                   <i class='bx bx-checkbox-square'></i>
                   <span>Resolução de problemas de matemática, com permutações entre os métedos (ou maneira) de
@@ -131,7 +134,7 @@
             <i class='bx bx-trash'></i>
             <span>{{ language.message().cancel }}</span>
           </button>
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
             <i class='bx bx-save'></i>
             <span>{{ language.message().confirm }}</span>
           </button>

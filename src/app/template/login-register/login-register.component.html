@@ -21,20 +21,26 @@
         </h5>
         <hr class="pt-1 pb-1" />
         <ng-content [select]="'#'+contentId.login_register_form_input"/>
-        <div *ngIf="action=='login'" class="d-flex flex-sm-column gap-1 links-redirect">
+        <div *ngIf="action=='login'" class="d-flex flex-sm-column gap-1 links-redirect w-max">
           <a class="text-dark text-decoration-none" *ngIf="false">
-            <i class="fas fa-key"></i>
+            <i class='bx bx-info-circle'></i>
             <span class="ml-1">{{ language.message().forget_password }}</span>
           </a>
           <a class="mt-2 text-dark text-decoration-none" (click)="navigator.from(link.public_register)">
-            <i class="fas fa-file-alt"></i>
+            <i class='bx bx-info-circle'></i>
             <span class="ml-1">{{ language.message().not_exist_account_create }}</span>
           </a>
         </div>
-        <div *ngIf="action=='register'" class="d-flex flex-sm-column gap-1 links-redirect">
+        <div *ngIf="action=='register'" class="d-flex flex-sm-column gap-1 links-redirect w-max">
           <a class="mt-2 text-dark text-decoration-none" (click)="navigator.from(link.public_login)">
-            <i class="fas fa-file-alt"></i>
+            <i class='bx bx-info-circle'></i>
             <span class="ml-1">{{ language.message().exist_account_create }}</span>
+          </a>
+        </div>
+        <div *ngIf=" action=='register' || action=='login' " class="d-flex flex-sm-column gap-1 links-redirect w-max">
+          <a class="mt-2 text-dark text-decoration-none" (click)="navigator.from(link.math)">
+            <span class="bx bx-home"></span>
+            <span>{{ language.message().panel }}</span>
           </a>
         </div>
       </div>
