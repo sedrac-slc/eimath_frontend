@@ -103,7 +103,8 @@
     <ul class="list-style-none">
       <li class="nav-item dropdown p-0 m-0">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <img [src]="person.image" alt="photo-perfil" class="photo-perfil">
+          <img [src]="person.image" alt="photo-perfil" class="photo-perfil" *ngIf="person.image != null">
+          <img [src]="image.profile_avatar" alt="photo-perfil not" class="photo-perfil" *ngIf="person.image == null"/>
         </a>
         <ul class="dropdown-menu">
           <li>

@@ -5,6 +5,7 @@ import { LanguageService } from 'src/app/services/language.service';
 import { NavigatorService } from 'src/app/services/navigator.service';
 import { ConstantUtil } from 'src/app/utils/constant.util';
 import { ContentIdUtil } from 'src/app/utils/content-ids.util';
+import { ImageUtil } from 'src/app/utils/image.util';
 import { LinkUtil } from 'src/app/utils/link.util';
 
 @Component({
@@ -23,6 +24,7 @@ export class DashboardComponent {
     protected contentId: ContentIdUtil,
     protected constante: ConstantUtil,
     protected link: LinkUtil,
+    protected image: ImageUtil,
     protected navigator: NavigatorService,
     protected language: LanguageService,
     protected guardaService: GuardService

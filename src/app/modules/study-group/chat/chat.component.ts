@@ -1,10 +1,11 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Group } from 'src/app/model/grupo.model';
 import { MemberPage } from 'src/app/model/memberPage.model';
 import { Message } from 'src/app/model/message.model';
 import { MessagePage } from 'src/app/model/messagePage.model';
 import { UserPeople } from 'src/app/model/userPeople.model';
+import { ChatService } from 'src/app/services/chat.service';
 import { GuardService } from 'src/app/services/guard.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { MemberService } from 'src/app/services/member.service';
@@ -24,7 +25,7 @@ import { LinkUtil } from 'src/app/utils/link.util';
   styleUrls: ['./chat.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ChatComponent {
+export class ChatComponent implements OnInit{
 
   group_type: string = '';
   memberPage: MemberPage;
@@ -43,6 +44,7 @@ export class ChatComponent {
     protected sweetAlert: SweetALertService,
     protected dateUtil: DateUtil,
 
+    private chatService: ChatService,
     private route: ActivatedRoute,
     private guardService: GuardService,
     private memberService: MemberService,
@@ -64,6 +66,10 @@ export class ChatComponent {
         this.navigator.dashboardRedirect();
     }
     this.person = this.guardService.responseTokenUser().person
+  }
+
+  ngOnInit(): void {
+    this.chatService.joinRoom(this.group.name);
   }
 
   private searchMember(){
@@ -92,10 +98,12 @@ export class ChatComponent {
 
   saveMessage(){
     let message = new Message(this.text,this.group, this.person);
-    this.messageService.save(message).subscribe({
+    /*this.messageService.save(message).subscribe({
       next: (_) => this.searchMessages(),
       error: (_) => this.sweetAlert.operationFalied()
-     });
+     });*/
+
+     this.chatService.sendRoom(this.group.name, message);
   }
 
 
