@@ -49,10 +49,15 @@ body{
 }
 
 .offcanvas-body a{
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
 #content{
   width: 100%;
+}
+
+.btn-close::after, .btn-close::before{
+  color: white;
+  background-color: white;
 }

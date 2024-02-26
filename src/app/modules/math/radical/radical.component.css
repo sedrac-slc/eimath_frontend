@@ -63,3 +63,7 @@
   padding-right: 0.5rem;
   width: max-content;
 }
+
+.fraction-arithmetic .signal{
+  margin-top: -10px !important;
+}

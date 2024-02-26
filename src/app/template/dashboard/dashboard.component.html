@@ -1,20 +1,20 @@
 <div class="wrapper d-flex align-items-stretch">
 
-  <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
+  <div class="offcanvas offcanvas-start bg-primary text-white" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
     aria-labelledby="staticBackdropLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="staticBackdropLabel">Menu</h5>
+      <h5 class="offcanvas-title" id="staticBackdropLabel">{{ constante.site_name }}</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
       <ng-content [select]="'#'+contentId.dashboard_button_back" />
 
       <div class="">
-        <div class="m-auto">
+        <div class="m-auto mb-2">
           <app-selector-language />
         </div>
-        <div class="logo h3 text-white mb-1 mt-1 text-center">{{ constante.site_name }}</div>
-        <ul class="list-unstyled components mb-5">
+
+        <ul class="list-unstyled components mb-5 mt-5">
           <li class="active">
             <a (click)="navigator.fromEvent(link.public,$event)">
               <i class="bx bx-home mr-3"></i>
@@ -34,7 +34,7 @@
             </a>
           </li>
           <li class="mt-4">
-            <a href="#" (click)="toogleDropDown('pageSubmenu'); $event.preventDefault()" data-toggle="collapse"
+            <a class="text-white" href="#" (click)="toogleDropDown('pageSubmenu'); $event.preventDefault()" data-toggle="collapse"
               aria-expanded="false" class="dropdown-toggle">
               <i class='bx bx-food-menu mr-3'></i>
               <span>{{ language.message().dashboard_topic }}</span>
